@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="codecanyon.jagatpharma.SearchActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="@dimen/space_5"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:padding="@dimen/space_5">
+
+            <Spinner
+                android:visibility="gone"
+                android:id="@+id/sp_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:layout_marginTop="@dimen/space_5"
+                android:textColorHint="@color/white"
+                app:errorTextAppearance="@style/error_appearance"
+                app:hintTextAppearance="@style/error_appearance">
+
+                <EditText
+                    android:imeOptions="actionDone"
+                    android:id="@+id/et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:ems="10"
+                    android:hint="@string/search_text"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/color_bg"
+                    android:theme="@style/edittext_white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:visibility="gone"
+                android:id="@+id/btn_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/xml_rounded_corner_border_white"
+                android:text="@string/search"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <RelativeLayout
+        android:layout_marginTop="-300dp"
+        android:translationZ="@dimen/space_10"
+        android:id="@+id/llbottom"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab1"
+            android:translationZ="@dimen/space_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="12dp"
+            android:src="@drawable/whatsapp"
+            android:visibility="gone"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:fabCustomSize="40dp"
+            app:fabSize="auto"/>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="12dp"
+            android:src="@drawable/call"
+            android:visibility="gone"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabCustomSize="50dp"
+            app:fabSize="auto"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="12dp"
+            android:src="@drawable/ic_baseline_add_circle_24"
+            android:visibility="visible"
+            app:backgroundTint="@color/colorAccent"
+            app:fabCustomSize="60dp"
+            app:fabSize="auto"/>
+
+    </RelativeLayout>
+</LinearLayout>
+

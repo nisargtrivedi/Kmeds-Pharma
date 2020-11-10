@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_user"
+        android:title="@string/user_manage">
+        <menu>
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_menu_user"
+                android:title="@string/user_profile" />
+            <item
+                android:id="@+id/nav_order"
+                android:icon="@drawable/ic_menu_order"
+                android:title="@string/my_orders" />
+            <item
+                android:id="@+id/nav_upload"
+                android:icon="@drawable/ic_menu_upload"
+                android:title="@string/upload_prescription" />
+            <item
+                android:id="@+id/nav_offer"
+                android:icon="@drawable/ic_menu_offers"
+                android:title="@string/view_offer" />
+            <item
+                android:id="@+id/nav_address"
+                android:icon="@drawable/ic_menu_delivery_address"
+                android:title="@string/delivery_address" />
+            <item
+                android:id="@+id/nav_notification"
+                android:icon="@drawable/ic_menu_notification"
+                android:title="@string/notification" />
+        </menu>
+    </item>
+
+    <item android:title="@string/product">
+        <menu>
+            <item
+                android:id="@+id/nav_prescription"
+                android:icon="@drawable/ic_menu_prescription"
+                android:title="@string/prescription" />
+            <item
+                android:id="@+id/nav_medical"
+                android:icon="@drawable/ic_menu_medical"
+                android:title="@string/medical_product" />
+
+        </menu>
+    </item>
+    <item android:title="@string/communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_rate"
+                android:icon="@drawable/ic_menu_rating"
+                android:title="@string/rate_us" />
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/share" />
+
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/ic_menu_logout"
+        android:title="@string/logout" />
+
+</menu>

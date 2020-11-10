@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="codecanyon.jagatpharma.My_prescriptionActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/rv_my_prescription"
+        android:layout_above="@+id/tv_home_upload" />
+
+    <TextView
+        android:id="@+id/tv_home_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:drawableLeft="@mipmap/ic_upload"
+        android:drawablePadding="@dimen/space_10"
+        android:drawableStart="@mipmap/ic_upload"
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"
+        android:text="@string/upload_your_prescription"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

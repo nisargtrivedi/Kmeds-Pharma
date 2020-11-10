@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bg"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/space_5"
+                app:cardUseCompatPadding="true"
+                card_view:cardCornerRadius="4dp">
+
+                <TextView
+                    android:id="@+id/tv_home_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_search_02"
+                    android:drawableRight="@drawable/ic_search_02"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/space_5"
+                    android:text="@string/search_text"
+                    android:textColor="@color/color_bg" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_home_upload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_10"
+                android:background="@drawable/xml_rounded_button"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawableLeft="@mipmap/ic_upload"
+                android:drawablePadding="@dimen/space_10"
+                android:drawableRight="@drawable/ic_arrow_right"
+                android:drawableStart="@mipmap/ic_upload"
+                android:gravity="center_vertical"
+                android:text="@string/upload_your_prescription"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_10"
+                android:layout_marginStart="@dimen/space_10"
+                android:text="@string/looking_for" />
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="@dimen/space_10"-->
+<!--                android:background="@drawable/xml_rounded_corner_white"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:padding="@dimen/space_10"-->
+<!--                android:weightSum="5">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_home_prescription"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="@dimen/space_8"-->
+<!--                    android:layout_marginRight="8dp"-->
+<!--                    android:drawableTop="@mipmap/ic_rx_04"-->
+<!--                    android:text="@string/prescription"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintRight_toLeftOf="@+id/textView4"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView4"-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:layout_height="65dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@color/color_bg"-->
+<!--                    android:gravity="center"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_home_medical"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="8dp"-->
+<!--                    android:layout_marginStart="@dimen/space_8"-->
+<!--                    android:drawableTop="@mipmap/ic_medical_02"-->
+<!--                    android:text="@string/medical_product"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintLeft_toRightOf="@+id/textView4"-->
+<!--                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_10"
+                android:background="@drawable/xml_rounded_corner_white"
+                android:orientation="horizontal"
+                android:padding="@dimen/space_10"
+                android:weightSum="5">
+
+                <ImageView
+                    android:layout_weight="1"
+
+                    android:layout_width="60dp"
+                    android:id="@+id/btnCall"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:src="@drawable/call"
+                    android:text="@string/prescription"
+                    />
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="1dp"
+                    android:layout_height="65dp"
+                    android:background="@color/color_bg"
+                    android:gravity="center" />
+
+                <ImageView
+                    android:layout_weight="1"
+                    android:id="@+id/btnWhatsapp"
+                    android:layout_width="80dp"
+                    android:layout_height="@dimen/space_100"
+                    android:src="@drawable/whatsapp"
+                    android:text="@string/prescription"
+                    />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="1dp"
+                    android:layout_height="65dp"
+                    android:background="@color/color_bg"
+                    android:gravity="center" />
+                <ImageView
+                    android:layout_weight="1"
+                    android:id="@+id/tv_home_prescription"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/image"
+                    android:text="@string/prescription"
+                    />
+                <TextView
+                    android:id="@+id/tvv"
+                    android:layout_width="1dp"
+                    android:layout_height="65dp"
+                    android:background="@color/color_bg"
+                    android:gravity="center" />
+                <ImageView
+                    android:layout_weight="1"
+                    android:id="@+id/tvOrder"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/recycle"
+                    android:text="@string/prescription"
+                    />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_10"
+                android:layout_marginStart="@dimen/space_10"
+                android:text="@string/suggested" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_suggested"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/btnCall"-->
+<!--                android:drawablePadding="@dimen/space_10"-->
+<!--                android:drawableLeft="@drawable/ic_baseline_phone_24"-->
+<!--                android:textSize="@dimen/text_20"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:paddingLeft="@dimen/space_10"-->
+<!--                android:gravity="center|left"-->
+<!--                android:text="+91 7041681684 (Chintan Dave)"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/space_50"></TextView>-->
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

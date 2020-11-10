@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="codecanyon.jagatpharma.Edit_profileActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/space_10">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/iv_profile_img"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="@dimen/space_5"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="1dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/space_10">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_profile_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/black"
+                    android:textColorHint="@color/black"
+                    app:errorTextAppearance="@style/error_appearance_black"
+                    app:hintTextAppearance="@style/error_appearance_black">
+
+                    <EditText
+                        android:id="@+id/et_profile_firstname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:ems="10"
+                        android:hint="@string/first_name"
+                        android:inputType="textCapSentences"
+                        android:nextFocusDown="@+id/et_reg_lastname"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_profile_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/black"
+                    android:textColorHint="@color/black"
+                    app:errorTextAppearance="@style/error_appearance_black"
+                    app:hintTextAppearance="@style/error_appearance_black">
+
+                    <EditText
+                        android:id="@+id/et_profile_lastname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:ems="10"
+                        android:hint="@string/last_name"
+                        android:inputType="textCapSentences"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_profile_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/black"
+                    android:paddingBottom="@dimen/space_10"
+                    android:paddingEnd="@dimen/space_5"
+                    android:paddingLeft="@dimen/space_5"
+                    android:paddingRight="@dimen/space_5"
+                    android:paddingStart="@dimen/space_5"
+                    android:textColorHint="@color/black"
+                    app:errorTextAppearance="@style/error_appearance_black"
+                    app:hintTextAppearance="@style/error_appearance_black">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/sp_profile_gender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="bottom" />
+                    </LinearLayout>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_profile_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/black"
+                    android:paddingBottom="@dimen/space_10"
+                    android:paddingEnd="@dimen/space_5"
+                    android:paddingLeft="@dimen/space_5"
+                    android:paddingRight="@dimen/space_5"
+                    android:paddingStart="@dimen/space_5"
+                    android:textColorHint="@color/black"
+                    app:errorTextAppearance="@style/error_appearance_black"
+                    app:hintTextAppearance="@style/error_appearance_black">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/xml_bottom_border_black"
+                        android:gravity="bottom">
+
+                        <TextView
+                            android:id="@+id/tv_profile_dob"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:ems="10"
+                            android:gravity="bottom"
+                            android:text="@string/dob"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_18" />
+
+                        <ImageView
+                            android:id="@+id/iv_profile_dob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            app:srcCompat="@mipmap/ic_calender" />
+                    </RelativeLayout>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_profile_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black"
+                app:errorTextAppearance="@style/error_appearance_black"
+                app:hintTextAppearance="@style/error_appearance_black">
+
+                <EditText
+                    android:id="@+id/et_profile_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:editable="false"
+                    android:ems="10"
+                    android:hint="@string/email_address"
+                    android:inputType="none"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_bg" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_profile_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black"
+                app:errorTextAppearance="@style/error_appearance_black"
+                app:hintTextAppearance="@style/error_appearance_black">
+
+                <EditText
+                    android:id="@+id/et_profile_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="@string/mobile_number"
+                    android:inputType="number"
+                    android:maxLength="15"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_bg" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_profile_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black"
+                app:errorTextAppearance="@style/error_appearance_black"
+                app:hintTextAppearance="@style/error_appearance_black">
+
+                <EditText
+                    android:id="@+id/et_profile_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="@string/address"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_profile_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black"
+                app:errorTextAppearance="@style/error_appearance_black"
+                app:hintTextAppearance="@style/error_appearance_black">
+
+                <EditText
+                    android:id="@+id/et_profile_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="@string/city"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/xml_rounded_corner_border_white"
+                android:text="@string/update"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

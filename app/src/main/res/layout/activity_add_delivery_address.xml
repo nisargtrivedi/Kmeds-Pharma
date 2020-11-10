@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="codecanyon.jagatpharma.Add_delivery_addressActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_add_address">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/space_8">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_add_address_zipcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:textColorHint="@color/black"
+                    android:layout_centerVertical="true"
+                    app:errorTextAppearance="@style/error_appearance_black"
+                    app:hintTextAppearance="@style/error_appearance_black"
+                    android:layout_toLeftOf="@+id/btn_add_address_zipcheck"
+                    android:layout_toStartOf="@+id/btn_add_address_zipcheck">
+
+                    <EditText
+                        android:id="@+id/et_add_address_zipcode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:ems="10"
+                        android:hint="@string/zip_code"
+                        android:inputType="number"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/color_bg" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_add_address_zipcheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/check"
+                    android:textColor="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/xml_rounded_button"/>
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_add_address_fname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black"
+                app:errorTextAppearance="@style/error_appearance_black"
+                app:hintTextAppearance="@style/error_appearance_black">
+
+                <EditText
+                    android:id="@+id/et_add_address_fname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:hint="@string/full_name"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_bg" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_add_address_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black"
+                app:errorTextAppearance="@style/error_appearance_black"
+                app:hintTextAppearance="@style/error_appearance_black">
+
+                <EditText
+                    android:id="@+id/et_add_address_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:maxLength="15"
+                    android:hint="@string/mobile_number"
+                    android:inputType="phone"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_bg" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_add_address_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black"
+                app:errorTextAppearance="@style/error_appearance_black"
+                app:hintTextAppearance="@style/error_appearance_black">
+
+                <EditText
+                    android:id="@+id/et_add_address_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="@string/address"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_bg" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_add_address_landmark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black"
+                app:errorTextAppearance="@style/error_appearance_black"
+                app:hintTextAppearance="@style/error_appearance_black">
+
+                <EditText
+                    android:id="@+id/et_add_address_landmark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:hint="@string/landmark"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_bg" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_add_address_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black"
+                app:errorTextAppearance="@style/error_appearance_black"
+                app:hintTextAppearance="@style/error_appearance_black">
+
+                <EditText
+                    android:id="@+id/et_add_address_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:hint="@string/city"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_bg" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_add_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="@string/add_address"
+        android:textColor="@color/white" />
+</RelativeLayout>

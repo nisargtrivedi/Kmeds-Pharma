@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bg"
+    android:orientation="vertical"
+    tools:context="codecanyon.jagatpharma.Prescription_listActivity">
+
+    <EditText
+        android:id="@+id/et_prescription_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_8"
+        android:background="@drawable/xml_rounded_corner_white"
+        android:drawableEnd="@drawable/ic_search_02"
+        android:drawableRight="@drawable/ic_search_02"
+        android:gravity="center_vertical"
+        android:hint="@string/search_prescription"
+        android:padding="@dimen/space_5"
+        android:textColor="@color/black"
+        android:textColorHint="@color/color_bg" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_prescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/ll_index"
+            android:layout_toStartOf="@+id/ll_index" />
+
+        <LinearLayout
+            android:id="@+id/ll_index"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/space_5"
+            android:background="@drawable/xml_rounded_corner_white"
+            android:padding="2dp">
+
+            <com.viethoa.RecyclerViewFastScroller
+                android:id="@+id/fast_scroller"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

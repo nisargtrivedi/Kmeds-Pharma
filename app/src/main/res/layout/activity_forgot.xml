@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context="codecanyon.jagatpharma.ForgotActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/space_10">
+
+            <include layout="@layout/include_image" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/space_50"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_50"
+                app:srcCompat="@drawable/app_top_logo" />
+            <TextView
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/space_20"
+                android:textColor="@color/white"
+                android:text="JAGAT PHARMA"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"></TextView>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_50"
+                android:gravity="center"
+                android:text="@string/forgot_note_2"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/white" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_forgot_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_50"
+                android:backgroundTint="@color/white"
+                android:textColorHint="@color/white"
+                app:errorTextAppearance="@style/error_appearance"
+                app:hintTextAppearance="@style/error_appearance">
+
+                <EditText
+                    android:id="@+id/et_forgot_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:ems="10"
+                    android:hint="@string/email_address"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/color_bg"
+                    android:theme="@style/edittext_white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_forgot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/xml_rounded_corner_border_white"
+                android:text="@string/submit"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
