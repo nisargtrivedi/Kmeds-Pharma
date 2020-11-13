@@ -66,7 +66,8 @@ public class My_order_detail_adapter extends RecyclerView.Adapter<My_order_detai
 
         holder.title.setText(mList.getProduct_name());
         holder.qty.setText(mList.getQty());
-        holder.price.setText(mList.getPrice());
+        double d = Double.parseDouble(mList.getPrice());
+        holder.price.setText(String.format("%.2f",d));
     }
 
     @Override

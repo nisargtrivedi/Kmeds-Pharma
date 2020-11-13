@@ -75,8 +75,8 @@ public class Home_suggetion_adapter extends RecyclerView.Adapter<Home_suggetion_
         //Double items = Double.parseDouble(holder.tv_qty.getText().toString());
         Double get_price = Double.parseDouble(mList.getPrice());
 
-        holder.price.setText("" + get_price);
-        holder.tv_discount.setText("" + get_price);
+        holder.price.setText("" + String.format("%.2f",get_price));
+        holder.tv_discount.setText("" + String.format("%.2f",get_price));
 
         if (!mList.getDiscount().isEmpty() && !mList.getDiscount().equalsIgnoreCase("0")) {
             holder.iv_sale.setVisibility(View.VISIBLE);

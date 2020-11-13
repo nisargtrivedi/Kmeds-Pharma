@@ -93,7 +93,8 @@ public class My_order_adapter extends RecyclerView.Adapter<My_order_adapter.MyVi
         } else {
             holder.time.setText(context.getResources().getString(R.string.na));
         }
-        holder.price.setText(mList.getTotal_amount());
+        double d = Double.parseDouble(mList.getTotal_amount());
+        holder.price.setText(String.format("%.2f",d));
         holder.items.setText(mList.getTotal_items());
 
         holder.tvRepartOrder.setOnClickListener(new View.OnClickListener() {

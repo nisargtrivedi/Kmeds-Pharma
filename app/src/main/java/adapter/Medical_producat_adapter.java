@@ -5,11 +5,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Config.BaseURL;
@@ -20,10 +23,41 @@ import model.Medical_category_model;
  * Created by Rajesh on 2017-09-11.
  */
 
-public class Medical_producat_adapter extends RecyclerView.Adapter<Medical_producat_adapter.MyViewHolder> {
+public class Medical_producat_adapter extends RecyclerView.Adapter<Medical_producat_adapter.MyViewHolder> implements Filterable {
 
     private List<Medical_category_model> modelList;
+    private List<Medical_category_model> searchList;
     private Context context;
+
+    @Override
+    public Filter getFilter() {
+        return searchFilter;
+    }
+    private Filter searchFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Medical_category_model> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(searchList);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Medical_category_model item : searchList) {
+                    if (item.getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            modelList.clear();
+            modelList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title,total;
@@ -39,6 +73,7 @@ public class Medical_producat_adapter extends RecyclerView.Adapter<Medical_produ
 
     public Medical_producat_adapter(List<Medical_category_model> modelList) {
         this.modelList = modelList;
+        searchList = new ArrayList<Medical_category_model>(this.modelList);
     }
 
     @Override

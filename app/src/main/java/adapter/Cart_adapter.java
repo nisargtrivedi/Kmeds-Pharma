@@ -64,7 +64,7 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.ProductHolde
         Double items = Double.parseDouble(dbHandler.getInCartItemQty(map.get("product_id")));
         Double price = Double.parseDouble(map.get("price"));
 
-        holder.tv_price.setText("" + price * items);
+        holder.tv_price.setText("" + String.format("%.2f",price * items));
 
         if (!map.get("discount").isEmpty() && !map.get("discount").equalsIgnoreCase("0")) {
             holder.tv_discount_currency.setVisibility(View.VISIBLE);

@@ -3,7 +3,11 @@ package codecanyon.jagatpharma;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -28,7 +32,7 @@ public class Medical_product_listActivity extends CommonAppCompatActivity {
     private RecyclerView rv_medical_product_list;
 
     private Medical_product_list_adapter adapter;
-
+    private EditText edtSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,7 @@ public class Medical_product_listActivity extends CommonAppCompatActivity {
         getSupportActionBar().setTitle(gettitle);
 
         rv_medical_product_list = (RecyclerView) findViewById(R.id.rv_medical_product_list);
+        edtSearch=findViewById(R.id.edtSearch);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         rv_medical_product_list.setLayoutManager(gridLayoutManager);
 
@@ -77,7 +82,22 @@ public class Medical_product_listActivity extends CommonAppCompatActivity {
                 adapter = new Medical_product_list_adapter(medical_category_list_modelList,Medical_product_listActivity.this);
                 rv_medical_product_list.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+                edtSearch.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        adapter.getFilter().filter(edtSearch.getText().toString());
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
                 // display toast message
                 CommonAppCompatActivity.showListToast(Medical_product_listActivity.this, medical_category_list_modelList.isEmpty());
 

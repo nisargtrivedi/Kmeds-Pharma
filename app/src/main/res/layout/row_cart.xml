@@ -135,6 +135,7 @@
         </LinearLayout>
 
         <View
+            android:layout_marginTop="@dimen/space_10"
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="1dp"

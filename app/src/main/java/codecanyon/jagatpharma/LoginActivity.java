@@ -110,8 +110,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             ti_email.setError(getString(R.string.error_field_required));
             focusView = et_email;
             cancel = true;
-        } else if (!isEmailValid(email)) {
-            ti_email.setError(getString(R.string.error_invalid_email));
+        } else if (!isValidPhone(email)) {
+            ti_email.setError(getString(R.string.error_invalid_phone));
             focusView = et_email;
             cancel = true;
         }
@@ -154,6 +154,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
+    }
+
+    private boolean isValidPhone(String password) {
+        //TODO: Replace this with your own logic
+        return password.length() >= 10;
     }
 
     private void makeLogin(String user_email, String user_password) {

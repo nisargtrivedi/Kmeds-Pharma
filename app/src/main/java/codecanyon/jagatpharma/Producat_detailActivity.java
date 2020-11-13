@@ -137,7 +137,7 @@ public class Producat_detailActivity extends CommonAppCompatActivity implements 
         if (!discount.isEmpty() && !discount.equalsIgnoreCase("0")) {
             tv_price.setText(getDiscountPrice(discount, "" + get_price * items, true));
         } else {
-            tv_price.setText("" + get_price * items);
+            tv_price.setText("" + String.format("%.2f",get_price * items));
         }
 
         iv_minus.setOnClickListener(this);
@@ -204,7 +204,7 @@ public class Producat_detailActivity extends CommonAppCompatActivity implements 
 
                     tv_price.setText(getDiscountPrice(map.get("discount"), "" + get_price * items, true));
                 } else {
-                    tv_price.setText("" + get_price * items);
+                    tv_price.setText("" + String.format("%.2f",get_price * items));
                 }
 
             }
@@ -222,7 +222,7 @@ public class Producat_detailActivity extends CommonAppCompatActivity implements 
 
                 tv_price.setText(getDiscountPrice(map.get("discount"), "" + get_price * items, true));
             } else {
-                tv_price.setText("" + get_price * items);
+                tv_price.setText("" + String.format("%.2f",get_price * items));
             }
 
         } else if (id == R.id.iv_product_detail_add) {

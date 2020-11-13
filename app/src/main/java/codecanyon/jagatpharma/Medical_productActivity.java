@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,6 +33,7 @@ public class Medical_productActivity extends CommonAppCompatActivity {
     private List<Medical_category_model> medical_category_modelList = new ArrayList<>();
 
     private RecyclerView rv_medical_product;
+    private EditText edtSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,8 @@ public class Medical_productActivity extends CommonAppCompatActivity {
         setContentView(R.layout.activity_medical_product);
 
         rv_medical_product = (RecyclerView) findViewById(R.id.rv_medical_product);
+        edtSearch=findViewById(R.id.edtSearch);
+
         rv_medical_product.setLayoutManager(new LinearLayoutManager(this));
 
         // check internet connection available or not
@@ -87,6 +94,23 @@ public class Medical_productActivity extends CommonAppCompatActivity {
                 Medical_producat_adapter adapter = new Medical_producat_adapter(medical_category_modelList);
                 rv_medical_product.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+
+                edtSearch.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        adapter.getFilter().filter(edtSearch.getText().toString());
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
 
             }
 

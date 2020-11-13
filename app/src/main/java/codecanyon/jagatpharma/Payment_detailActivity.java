@@ -254,11 +254,13 @@ public class Payment_detailActivity extends CommonAppCompatActivity implements V
                     MERCHANT_NAME = paypal_merchant_name;
                     //CONFIG_ENVIRONMENT = "PayPalConfiguration.ENVIRONMENT_SANDBOX";
 
-                    if (status.equals("0")) {
-                        cv_paypal.setVisibility(View.GONE);
-                    } else {
-                        cv_paypal.setVisibility(View.VISIBLE);
-                    }
+//                    if (status.equals("0")) {
+//                        cv_paypal.setVisibility(View.GONE);
+//                    } else {
+//                        cv_paypal.setVisibility(View.VISIBLE);
+//                        cv_paypal.setVisibility(View.GONE);
+//                    }
+                    cv_paypal.setVisibility(View.GONE);
 
                     if (paypal_environment.equals("sandbox")) {
                         CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;

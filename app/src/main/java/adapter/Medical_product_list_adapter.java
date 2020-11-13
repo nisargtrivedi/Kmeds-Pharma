@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,12 +29,42 @@ import util.DatabaseHandler;
  * Created by Rajesh on 2017-09-11.
  */
 
-public class Medical_product_list_adapter extends RecyclerView.Adapter<Medical_product_list_adapter.MyViewHolder> {
+public class Medical_product_list_adapter extends RecyclerView.Adapter<Medical_product_list_adapter.MyViewHolder> implements Filterable {
 
     private List<Medical_category_list_model> modelList;
+    private List<Medical_category_list_model> searchList;
     private Activity context;
     private DatabaseHandler dbcart;
 
+    @Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Medical_category_list_model> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(searchList);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Medical_category_list_model item : searchList) {
+                    if (item.getProduct_name().toLowerCase().startsWith(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            modelList.clear();
+            modelList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView title, price, currency1, currency2, tv_qty, tv_add, tv_discount;
         private ImageView image, iv_plus, iv_minus, iv_sale, iv_add;
@@ -200,6 +233,7 @@ public class Medical_product_list_adapter extends RecyclerView.Adapter<Medical_p
         this.modelList = modelList;
         this.context = context;
         dbcart = new DatabaseHandler(context);
+        searchList=new ArrayList<>(this.modelList);
     }
 
     @Override
@@ -220,7 +254,9 @@ public class Medical_product_list_adapter extends RecyclerView.Adapter<Medical_p
                 .into(holder.image);
 
         holder.title.setText(mList.getProduct_name());
-        holder.price.setText(mList.getPrice());
+
+        double d = Double.parseDouble(mList.getPrice());
+        holder.price.setText(String.format("%.2f",d));
         holder.currency1.setText(context.getResources().getString(R.string.rs));
         holder.currency2.setText(context.getResources().getString(R.string.rs));
 
@@ -253,8 +289,8 @@ public class Medical_product_list_adapter extends RecyclerView.Adapter<Medical_p
         Double items = Double.parseDouble(holder.tv_qty.getText().toString());
         Double get_price = Double.parseDouble(mList.getPrice());
 
-        holder.price.setText("" + get_price * items);
-        holder.tv_discount.setText("" + get_price * items);
+        holder.price.setText("" + String.format("%.2f",get_price * items));
+        holder.tv_discount.setText("" + String.format("%.2f",get_price * items));
 
         if (!mList.getDiscount().isEmpty() && !mList.getDiscount().equalsIgnoreCase("0")) {
             holder.iv_sale.setVisibility(View.VISIBLE);
