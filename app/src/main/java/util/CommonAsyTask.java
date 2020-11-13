@@ -75,7 +75,7 @@ public class CommonAsyTask extends AsyncTask<String, Void, String> {
             if (is_progress_show) {
                 //progressDialog = ProgressDialog.show(context, "", "Process with data..", true);
                 progressDialog = new ProgressDialog(context, R.style.AppCompatAlertDialogStyle);
-                progressDialog.setMessage("Process with data..");
+                progressDialog.setMessage("Loading......");
                 progressDialog.setCancelable(false);
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressDialog.show();

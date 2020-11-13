@@ -28,6 +28,11 @@
                 android:id="@+id/nav_notification"
                 android:icon="@drawable/ic_menu_notification"
                 android:title="@string/notification" />
+
+            <item
+                android:id="@+id/nav_enquiry"
+                android:icon="@drawable/enquiry_24"
+                android:title="@string/enquiry" />
         </menu>
     </item>
 
@@ -35,11 +40,11 @@
         <menu>
             <item
                 android:id="@+id/nav_prescription"
-                android:icon="@drawable/ic_menu_prescription"
+                android:icon="@drawable/menu_px"
                 android:title="@string/prescription" />
             <item
                 android:id="@+id/nav_medical"
-                android:icon="@drawable/ic_menu_medical"
+                android:icon="@drawable/menu_medicine"
                 android:title="@string/medical_product" />
 
         </menu>

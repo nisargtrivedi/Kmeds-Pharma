@@ -9,7 +9,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -134,6 +137,30 @@ public class SearchActivity extends CommonAppCompatActivity implements View.OnCl
         });
 
 
+        et_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                String search = et_search.getText().toString();
+                if (!TextUtils.isEmpty(search)) {
+                    if (ConnectivityReceiver.isConnected()) {
+                        makeGetProduct(search);
+                    } else {
+                        ConnectivityReceiver.showSnackbar(SearchActivity.this);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

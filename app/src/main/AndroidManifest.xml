@@ -13,7 +13,7 @@
     <application
         android:name="codecanyon.jagatpharma.AppController"
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
@@ -90,6 +90,12 @@
             android:name="codecanyon.jagatpharma.Prescription_listActivity"
             android:label="@string/prescription"
             android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:parentActivityName=".MainActivity"
+            android:name="codecanyon.jagatpharma.EnquiryList"
+            android:label="@string/enquiry"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="codecanyon.jagatpharma.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />

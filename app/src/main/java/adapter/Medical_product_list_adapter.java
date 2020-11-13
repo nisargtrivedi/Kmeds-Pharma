@@ -282,9 +282,9 @@ public class Medical_product_list_adapter extends RecyclerView.Adapter<Medical_p
 
         if (getEffectedprice) {
             Double effected_price = price1 - discount_amount;
-            return effected_price.toString();
+            return String.format("%.2f",effected_price);
         } else {
-            return discount_amount.toString();
+            return String.format("%.2f",discount_amount);
         }
     }
 

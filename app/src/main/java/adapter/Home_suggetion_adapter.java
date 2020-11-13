@@ -104,9 +104,9 @@ public class Home_suggetion_adapter extends RecyclerView.Adapter<Home_suggetion_
 
         if (getEffectedprice) {
             Double effected_price = price1 - discount_amount;
-            return effected_price.toString();
+            return String.format("%.2f",effected_price);
         } else {
-            return discount_amount.toString();
+            return String.format("%.2f",discount_amount);
         }
     }
 

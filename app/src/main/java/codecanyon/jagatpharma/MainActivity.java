@@ -336,6 +336,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             sessionManagement.logoutSession();
             finish();
+        }else if(id==R.id.nav_enquiry){
+            i = new Intent(MainActivity.this, EnquiryList.class);
         }
 
         if (i != null) {

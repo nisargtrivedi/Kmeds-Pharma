@@ -56,6 +56,10 @@ public class BaseURL {
 
     public static String REPEAT_MY_ORDER_URL = BASE_URL + "api/repeat_order.php";
 
+    public static String PLACE_ENQUIRY = BASE_URL + "api/place_enquiry.php";
+
+    public static String LIST_ENQUIRY = BASE_URL + "api/list_enquiry.php";
+
     public static String GET_ORDER_DETAIL_URL = BASE_URL + "index.php/rest/order/order_details";
 
     public static String CANCEL_ORDER_URL = BASE_URL + "index.php/rest/order/cancel_order";

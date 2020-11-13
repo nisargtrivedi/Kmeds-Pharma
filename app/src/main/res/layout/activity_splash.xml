@@ -12,14 +12,18 @@
         android:layout_centerInParent="true"
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         app:srcCompat="@drawable/logo" />
     <TextView
+        android:layout_marginTop="@dimen/space_10"
         android:layout_marginLeft="@dimen/space_10"
         android:id="@+id/txt"
-        android:textSize="19sp"
+        android:fontFamily="@font/f"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
         android:layout_below="@id/imageView6"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimary"
         android:text="Free Home Delivery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></TextView>

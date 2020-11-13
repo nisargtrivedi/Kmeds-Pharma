@@ -17,7 +17,9 @@
             android:textColor="#000000"
             android:paddingLeft="10dp"
             android:id="@+id/edtName"
-            android:textSize="13sp"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@id/edtQty"
+            android:textSize="16sp"
             android:background="@drawable/rect"
             android:singleLine="true"
             android:textColorHint="#000000"
@@ -27,7 +29,7 @@
             android:layout_height="match_parent"></androidx.appcompat.widget.AppCompatEditText>
         <androidx.appcompat.widget.AppCompatEditText
             android:textColor="#000000"
-            android:textSize="13sp"
+            android:textSize="16sp"
             android:id="@+id/edtQty"
             android:layout_marginLeft="@dimen/space_10"
             android:singleLine="true"

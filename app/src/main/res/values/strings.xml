@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Jagat Pharma</string>
+    <string name="app_name">K Meds</string>
     <string name="title_activity_main">MainActivity</string>
 
     <!--hear you can change currency-->
@@ -137,7 +137,7 @@
     <string name="select_payment_mode">Select Payment Mode</string>
     <string name="cash_on_delivery">CASH ON DELIVERY</string>
     <string name="paypal">PAYPAL</string>
-    <string name="make_payment">Make Payment</string>
+    <string name="make_payment">Place Order</string>
     <string name="payment">Payment</string>
     <string name="offer">Offers</string>
     <string name="valid">Valid:\u0020</string>
@@ -174,5 +174,6 @@
     <string name="notification">Notifications</string>
     <string name="na">NA</string>
     <string name="offer_discount">Offer Discount:\u0020</string>
+    <string name="enquiry">Enquiry</string>
 
 </resources>
