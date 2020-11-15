@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.Settings;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -14,10 +15,12 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import util.Session_management;
 
@@ -27,7 +30,8 @@ public class SplashActivity extends AppCompatActivity {
     private AlertDialog dialog;
 
     private Session_management sessionManagement;
-    ImageView imageViewScooter;
+    ImageView imageViewScooter,imageView6;
+    TextView txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,8 @@ public class SplashActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         imageViewScooter=findViewById(R.id.imageViewScooter);
+        imageView6=findViewById(R.id.imageView6);
+        txt=findViewById(R.id.txt);
 
         sessionManagement = new Session_management(SplashActivity.this);
         TranslateAnimation animation = new TranslateAnimation(0.0f, 600.0f,
@@ -45,8 +51,16 @@ public class SplashActivity extends AppCompatActivity {
         animation.setDuration(2000);  // animation duration
         animation.setRepeatCount(1);  // animation repeat count
         animation.setRepeatMode(1);   // repeat animation (left to right, right to left )
-        //animation.setFillAfter(true);
-
+        animation.setFillAfter(true);
+        Animation aniSlide = AnimationUtils.loadAnimation(this,R.anim.zoom_out);
+        Animation aniSlide2 = AnimationUtils.loadAnimation(this,R.anim.zoom_in);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                imageView6.startAnimation(aniSlide2);
+                //txt.startAnimation(aniSlide2);
+            }
+        },1000);
         imageViewScooter.startAnimation(animation);
         Thread background = new Thread() {
             public void run() {
@@ -54,8 +68,8 @@ public class SplashActivity extends AppCompatActivity {
                 try {
                     // Thread will sleep for 5 seconds
 
-                    sleep(2 * 1000);
-
+                    sleep(3 * 1000);
+                    //imageView6.startAnimation(aniSlide);
                     // After 5 seconds redirect to another intent
                     checkAppPermissions();
 

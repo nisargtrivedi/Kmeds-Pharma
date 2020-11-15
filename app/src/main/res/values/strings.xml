@@ -85,7 +85,7 @@
     <string name="in_stock">IN STOCK:\u0020</string>
     <string name="update">Update</string>
     <string name="cart_empty">Cart is empty</string>
-    <string name="process_to_payment">Process to payment</string>
+    <string name="process_to_payment">Process</string>
     <string name="enter_promo_code">Enter Promo/e-Voucher Code</string>
     <string name="apply">Apply</string>
     <string name="order_total">Order Total</string>
@@ -119,7 +119,7 @@
     <string name="confirm_detail">Confirm Detail</string>
     <string name="edit">EDIT</string>
     <string name="i_agree_to">I agree to the\u0020</string>
-    <string name="terms_of_sale"><u>Terms of Sale.</u></string>
+    <string name="terms_of_sale"><u>Terms &amp; Conditions.</u></string>
     <string name="delivery_available">Yes! Delivery available to\u0020</string>
     <string name="delivery_charge">Delivery Charges.\u0020</string>
     <string name="added_delivery_ddress">Successfully added Delivery Address.</string>
@@ -139,7 +139,7 @@
     <string name="select_payment_mode">Select Payment Mode</string>
     <string name="cash_on_delivery">CASH ON DELIVERY</string>
     <string name="paypal">PAYPAL</string>
-    <string name="make_payment">Place Order</string>
+    <string name="make_payment">Place Enquiry</string>
     <string name="payment">Payment</string>
     <string name="offer">Offers</string>
     <string name="valid">Valid:\u0020</string>
@@ -147,7 +147,7 @@
     <string name="to">\u0020To\u0020</string>
     <string name="description">Description:\u0020</string>
     <string name="text_copied">Text Copied</string>
-    <string name="thank_you_order">Thank you for your order.</string>
+    <string name="thank_you_order">Thank you for your enquiry.</string>
     <string name="countinue_home">Continue home</string>
     <string name="track_my_order">Track my order</string>
     <string name="date">Date:\u0020</string>
@@ -177,5 +177,6 @@
     <string name="na">NA</string>
     <string name="offer_discount">Offer Discount:\u0020</string>
     <string name="enquiry">Enquiry</string>
+    <string name="do_you_need_dosage_label_on_medicine">Do you need dosage label on medicine ?</string>
 
 </resources>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -105,7 +106,10 @@ public class Payment_detailActivity extends CommonAppCompatActivity implements V
             offer_coupon = getIntent().getStringExtra("offer_coupon");
         }
 
-        tv_total_price.setText(total_price);
+        if(!TextUtils.isEmpty(total_price))
+            tv_total_price.setText(String.format("%.2f",Double.parseDouble(total_price)));
+        else
+            tv_total_price.setText(String.format("%.2f",0));
 
         rb_cash.setOnClickListener(this);
         rb_paypal.setOnClickListener(this);

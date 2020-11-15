@@ -2,20 +2,36 @@ package codecanyon.jagatpharma;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import Config.BaseURL;
 import adapter.Cart_adapter;
@@ -32,7 +48,7 @@ public class Confirm_detailActivity extends CommonAppCompatActivity implements V
     private TextView tv_name, tv_email, tv_add_address, tv_address_detail, tv_billing_detail;
     private RecyclerView rv_order;
     private Button btn_confirm;
-    private CheckBox chk_agree;
+    private CheckBox chk_agree,chk_upload_prescription;
 
     private SharedPreferences prefs_address;
 
@@ -41,6 +57,9 @@ public class Confirm_detailActivity extends CommonAppCompatActivity implements V
     private String offer_coupon, offer_discount, total_amount, net_amount;
 
     private List<My_order_detail_model> my_order_detail_modelList = new ArrayList<>();
+    public final int GALLERY_REQUEST_CODE = 1000;
+    public final int CAMERA_REQUEST_CODE = 1001;
+    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +78,7 @@ public class Confirm_detailActivity extends CommonAppCompatActivity implements V
         tv_name = (TextView) findViewById(R.id.tv_confirm_address_fname);
         tv_email = (TextView) findViewById(R.id.tv_confirm_address_email);
         tv_billing_detail = (TextView) findViewById(R.id.tv_confirm_address_bill_detail);
-
+        chk_upload_prescription=findViewById(R.id.chk_upload_prescription);
         tv_subtotal = (TextView) findViewById(R.id.tv_cart_sub_total);
         tv_total_items = (TextView) findViewById(R.id.tv_cart_total_items);
         tv_shipping_charge = (TextView) findViewById(R.id.tv_cart_charge);
@@ -75,7 +94,7 @@ public class Confirm_detailActivity extends CommonAppCompatActivity implements V
         TextView tv_coupon = (TextView) findViewById(R.id.tv_confirm_order_coupon_discount);
         tv_coupon_price = (TextView) findViewById(R.id.tv_cart_discount_coupon_price);
         chk_agree = (CheckBox) findViewById(R.id.chk_config_agree);
-
+        img=findViewById(R.id.img);
         rv_order.setLayoutManager(new LinearLayoutManager(this));
         // enabled nested scrolling in recyclerview
         rv_order.setNestedScrollingEnabled(false);
@@ -93,17 +112,156 @@ public class Confirm_detailActivity extends CommonAppCompatActivity implements V
         tv_edit_order.setOnClickListener(this);
         tv_edit_billing.setOnClickListener(this);
         btn_confirm.setOnClickListener(this);
+        chk_upload_prescription.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                        selectOption();
+                }
+            }
+        });
 
         //updateUI();
         updateData();
 
     }
 
+    private void launchCameraIntent()
+    {
+        Intent intent = new Intent(Confirm_detailActivity.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE);
+
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
+
+        // setting maximum bitmap width and height
+        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000);
+
+        startActivityForResult(intent, CAMERA_REQUEST_CODE);
+    }
+
+    private void launchGalleryIntent() {
+        Intent intent = new Intent(Confirm_detailActivity.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_GALLERY_IMAGE);
+
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
+        startActivityForResult(intent, GALLERY_REQUEST_CODE);
+    }
+    private void selectOption(){
+        ImagePickerActivity.showImagePickerOptions(Confirm_detailActivity.this, new ImagePickerActivity.PickerOptionListener() {
+            @Override
+            public void onTakeCameraSelected() {
+                launchCameraIntent();
+            }
+
+            @Override
+            public void onChooseGallerySelected() {
+                launchGalleryIntent();
+            }
+        });
+    }
     public void termsClick(View view) {
         Intent browseIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(BaseURL.GET_TERMS_OF_SALE_URL));
         startActivity(browseIntent);
     }
 
+    public String saveImage(Bitmap myBitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        File obj = new File(
+                Environment.getExternalStorageDirectory().getAbsolutePath() + "/jagatpharma/");
+        // have the object build the directory structure, if needed.
+        if (!obj.exists()) {
+            obj.mkdirs();
+        }
+
+        try {
+            File f = new File(obj, Calendar.getInstance()
+                    .getTimeInMillis() + ".jpg");
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            MediaScannerConnection.scanFile(Confirm_detailActivity.this,
+                    new String[]{f.getPath()},
+                    new String[]{"image/jpeg"}, null);
+            fo.close();
+            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+
+            return f.getAbsolutePath();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return "";
+    }
+
+    private String onCaptureImageResult(Intent data) {
+        //profilepic.setImageBitmap(null);
+
+        Uri fpath = data.getParcelableExtra("path");
+//        String fpath = mTempCameraPhotoFile.getPath();
+//        Bitmap thumbnail;
+//        String path = saveImage(thumbnail);
+        // Log.i("CAMERA FILE",fpath);
+        String path="";
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(Confirm_detailActivity.this.getContentResolver(), fpath);
+            path  = saveImage(bitmap);
+            if (!path.isEmpty()) {
+                File file = new File(path);
+
+                //      imagefile1 = file;
+                img.setImageURI(Uri.fromFile(file));
+
+                //   String user_id = sessionManagement.getUserDetails().get(BaseURL.KEY_ID);
+                // new Edit_profileActivity.updateProfile(user_id, file.getAbsolutePath()).execute();
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //new ImageCompression().execute(fpath.toString());
+        //img.setImageURI(Uri.parse(cameraFilePath));
+
+        return path;
+    }
+
+    private String onSelectFromGalleryResult(Intent data) {
+        String path="";
+        try {
+            Uri fpath = data.getParcelableExtra("path");
+            Uri ImageSelect = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(Confirm_detailActivity.this.getContentResolver(), fpath);
+                path  = saveImage(bitmap);
+                if (!path.isEmpty()) {
+                    File file = new File(path);
+
+                    img.setImageURI(Uri.fromFile(file));
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //new ImageCompression().execute(fpath.toString());
+            //img.setImageURI(Uri.parse(cameraFilePath));
+
+
+
+
+
+        }catch (Exception e){
+            Log.e("Error...",e.getMessage());
+            Toast.makeText(Confirm_detailActivity.this,"Try Again...",Toast.LENGTH_LONG).show();
+        }
+        return path;
+    }
     private void updateUI() {
         Session_management sessionManagement = new Session_management(this);
 
@@ -243,4 +401,34 @@ public class Confirm_detailActivity extends CommonAppCompatActivity implements V
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==CAMERA_REQUEST_CODE){
+            try {
+                //SELECTED_PATH = mTakePicture.onActivityResult(requestCode, resultCode, data);
+                try {
+                    onCaptureImageResult(data);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(requestCode==GALLERY_REQUEST_CODE){
+            try {
+                //SELECTED_PATH = mTakePicture.onActivityResult(requestCode, resultCode, data);
+                try {
+                    onSelectFromGalleryResult(data);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
