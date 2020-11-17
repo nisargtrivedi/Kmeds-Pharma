@@ -171,6 +171,8 @@
     <string name="offer_code">Offer Code\u0020</string>
     <string name="please_select_delivery_address">Please select delivery address</string>
     <string name="please_agree_with_terms">Please Agree with our terms</string>
+    <string name="please_upload_prescription">Please Upload prescription</string>
+
     <string name="please_enter_valid_voucher_code">Please enter a valid Promotional or Voucher Code.</string>
     <string name="pres">Pres.\u0020</string>
     <string name="notification">Notifications</string>

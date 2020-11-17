@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -58,9 +59,16 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 imageView6.startAnimation(aniSlide2);
+
                 //txt.startAnimation(aniSlide2);
             }
         },1000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt.setVisibility(View.VISIBLE);
+            }
+        },2000);
         imageViewScooter.startAnimation(animation);
         Thread background = new Thread() {
             public void run() {
@@ -150,9 +158,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void go_next() {
-
-
-
         if (sessionManagement.isLoggedIn()) {
             Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
             if (getIntent().getStringExtra("isorder") != null) {
@@ -163,7 +168,8 @@ public class SplashActivity extends AppCompatActivity {
                 mainIntent.putExtra("pres_id", getIntent().getStringExtra("pres_id"));
             }
             startActivity(mainIntent);
-        } else {
+        }
+        else {
             Intent loginIntent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(loginIntent);
         }

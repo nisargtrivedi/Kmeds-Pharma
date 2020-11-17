@@ -15,6 +15,7 @@
         android:layout_height="100dp"
         app:srcCompat="@drawable/logo" />
     <TextView
+        android:visibility="gone"
         android:layout_marginTop="@dimen/space_10"
         android:layout_marginLeft="@dimen/space_10"
         android:id="@+id/txt"
