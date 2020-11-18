@@ -30,10 +30,10 @@
         android:layout_height="wrap_content"></TextView>
 
     <ImageView
-        android:layout_below="@id/txt"
+        android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/space_10"
         android:id="@+id/imageViewScooter"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         app:srcCompat="@drawable/scooter" />
 </RelativeLayout>

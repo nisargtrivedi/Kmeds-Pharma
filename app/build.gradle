@@ -6,8 +6,8 @@ android {
         applicationId "codecanyon.jagatpharma"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -43,6 +43,7 @@ dependencies {
     // Image Cropping
     implementation 'com.github.yalantis:ucrop:2.2.2'
     implementation "com.karumi:dexter:5.0.0"
+    implementation 'org.jsoup:jsoup:1.10.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

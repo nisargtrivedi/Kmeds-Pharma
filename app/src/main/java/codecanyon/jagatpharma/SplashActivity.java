@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.provider.Settings;
 import androidx.core.app.ActivityCompat;
@@ -12,6 +13,8 @@ import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,6 +26,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+
+import java.io.IOException;
+
 import util.Session_management;
 
 public class SplashActivity extends AppCompatActivity {
@@ -33,7 +44,8 @@ public class SplashActivity extends AppCompatActivity {
     private Session_management sessionManagement;
     ImageView imageViewScooter,imageView6;
     TextView txt;
-
+    String currentVersion = "0";
+    String newVersion = "0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,7 +137,8 @@ public class SplashActivity extends AppCompatActivity {
                         MY_PERMISSIONS_REQUEST_WRITE_FIELS);
             }
         } else {
-            go_next();
+            //go_next();
+            new FetchAppVersionFromGooglePlayStore().execute();
         }
     }
 
@@ -184,5 +197,100 @@ public class SplashActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+    class FetchAppVersionFromGooglePlayStore extends AsyncTask<String, Void, String> {
 
+        @Override
+        protected void onPreExecute() {
+//            super.onPreExecute();
+            try {
+
+                currentVersion = getApplicationContext().getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+
+                Log.e("Current Version", "::" + currentVersion);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        protected String doInBackground(String... urls) {
+            String newVersion = null;
+
+            try {
+                Document document = Jsoup.connect("https://play.google.com/store/apps/details?id=" + getPackageName() + "&hl=en")
+                        .timeout(30000)
+                        .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+                        .referrer("http://www.google.com")
+                        .get();
+                if (document != null) {
+                    Elements element = document.getElementsContainingOwnText("Current Version");
+                    for (Element ele : element) {
+                        if (ele.siblingElements() != null) {
+                            Elements sibElemets = ele.siblingElements();
+                            for (Element sibElemet : sibElemets) {
+                                newVersion = sibElemet.text();
+                            }
+                        }
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return newVersion;
+
+        }
+
+        protected void onPostExecute(String onlineVersion) {
+            newVersion = onlineVersion;
+            System.out.println("NEW VERSION ===>" + onlineVersion);
+            Log.d("new Version", newVersion);
+
+            if (onlineVersion != null && !onlineVersion.isEmpty()) {
+
+                if (onlineVersion.equals(currentVersion)) {
+                   // Log.i("HASH_KEY", Utility.printKeyHash(Splash.this));
+                    //appPreferences = new AppPreferences(Splash.this);
+                    //System.out.println("USERID=========>" + appPreferences.getString("USERID"));
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            finish();
+                            try {
+                                go_next();
+                            } catch (Exception ex) {
+                            }
+                        }
+                    }, 3000);
+
+                } else {
+                    String message = String.format("%s recommends that to update the latest version for more products and offers.", getString(R.string.app_name));
+                    AlertDialog alertDialog = new AlertDialog.Builder(SplashActivity.this).create();
+                    alertDialog.setTitle("Force Update");
+                    alertDialog.setIcon(R.mipmap.ic_launcher);
+                    alertDialog.setCanceledOnTouchOutside(false);
+                    alertDialog.setCancelable(false);
+                    alertDialog.setMessage(message);
+
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Update", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            try {
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+                            } catch (android.content.ActivityNotFoundException anfe) {
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
+                            }
+                        }
+                    });
+
+                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            onBackPressed();
+                        }
+                    });
+
+                    alertDialog.show();
+                }
+
+            }
+        }
+    }
 }

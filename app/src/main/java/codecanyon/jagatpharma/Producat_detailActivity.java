@@ -115,7 +115,7 @@ public class Producat_detailActivity extends CommonAppCompatActivity implements 
         tv_about.setText(description);
         ExpandableTextview.makeTextViewResizable(this, tv_about, 3, getResources().getString(R.string.view_more), true, false);
 
-        tv_stock.setText(getstock);
+        tv_stock.setText(getstock.equals("1")?"Available":"Unavailable");
         tv_corporation.setText(mfg_name);
 
         if (getgeneric.equals("1")) {

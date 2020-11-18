@@ -36,7 +36,7 @@
                     android:adjustViewBounds="true"
                     app:srcCompat="@drawable/logo" />
                 <TextView
-                    android:fontFamily="@font/f"
+                    android:fontFamily="@font/arial"
                     android:textStyle="bold"
                     android:layout_gravity="center|left"
                     android:textColor="@color/white"

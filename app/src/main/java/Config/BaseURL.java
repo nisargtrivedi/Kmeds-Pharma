@@ -14,7 +14,7 @@ public class BaseURL {
     public static String BASE_URL = "http://kmedspharma.co.in/Admin_Panel/";
 
 
-    public static String REGISTER_URL = BASE_URL + "index.php/rest/user/register";
+    public static String REGISTER_URL = BASE_URL + "index.php/rest/user/new_register";
 
     public static String LOGIN_URL = BASE_URL + "index.php/rest/user/login";
 
