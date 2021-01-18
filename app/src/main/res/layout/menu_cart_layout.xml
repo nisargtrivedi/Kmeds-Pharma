@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:srcCompat="@mipmap/ic_cart_02" />
+        app:srcCompat="@drawable/cart" />
 
     <TextView
         android:id="@+id/tv_action_cart"

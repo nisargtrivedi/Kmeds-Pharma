@@ -19,7 +19,7 @@ import util.DatabaseHandler;
 
 public class CommonAppCompatActivity extends AppCompatActivity {
 
-    private TextView totalBudgetCount;
+    private TextView totalBudgetCount,totalBellCount;
     private static DatabaseHandler dbcart;
 
     public CommonAppCompatActivity() {
@@ -34,8 +34,12 @@ public class CommonAppCompatActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
 
         final MenuItem cart = menu.findItem(R.id.action_cart);
+        final MenuItem notification = menu.findItem(R.id.action_notification);
+
 
         View count = cart.getActionView();
+        View noti=notification.getActionView();
+
         count.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -44,7 +48,17 @@ public class CommonAppCompatActivity extends AppCompatActivity {
             }
         });
 
+        noti.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                menu.performIdentifierAction(notification.getItemId(), 0);
+            }
+        });
+
         totalBudgetCount = (TextView) count.findViewById(R.id.tv_action_cart);
+        totalBellCount = (TextView) noti.findViewById(R.id.tv_action_notification);
+
 
         dbcart = new DatabaseHandler(this);
 
@@ -68,6 +82,15 @@ public class CommonAppCompatActivity extends AppCompatActivity {
                     showToast(this, getResources().getString(R.string.cart_empty));
                 }
                 return true;
+            case R.id.action_notification:
+                if (dbcart.getNotificationCount() > 0) {
+                    Intent cartIntent = new Intent(this, NotificationActivity.class);
+                    startActivity(cartIntent);
+                } else {
+                    showToast(this, getResources().getString(R.string.cart_empty));
+                }
+                return true;
+
             case R.id.action_change_password:
                 Intent changeIntent = new Intent(this, Change_passwordActivity.class);
                 startActivity(changeIntent);
@@ -96,10 +119,17 @@ public class CommonAppCompatActivity extends AppCompatActivity {
             context.invalidateOptionsMenu();
         }
     }
-
+    public void updateBellCounter() {
+        if (totalBellCount != null) {
+            totalBellCount.setText("" + dbcart.getNotificationCount());
+        }
+    }
     @Override
     protected void onResume() {
         super.onResume();
         updateCounter(this);
+        updateBellCounter(
+
+        );
     }
 }

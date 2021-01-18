@@ -1,130 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="codecanyon.jagatpharma.LoginActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/space_10">
-
-            <include layout="@layout/include_image" />
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/tv_login_register"
+                android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:visibility="gone"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible"
                     android:id="@+id/imageView2"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/space_50"
+                    android:layout_height="250dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/space_50"
-                    app:srcCompat="@drawable/logo" />
+                    app:srcCompat="@drawable/login_header" />
                 <TextView
-                    android:fontFamily="@font/f"
+                    android:fontFamily="@font/lato_medium"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="25sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="@string/app_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/space_50"></TextView>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:padding="@dimen/space_10"
                     android:id="@+id/ti_login_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_50"
-                    android:backgroundTint="@color/white"
-                    android:textColorHint="@color/white"
-                    app:errorTextAppearance="@style/error_appearance"
-                    app:hintTextAppearance="@style/error_appearance">
+                    android:layout_marginTop="@dimen/space_10"
+                    app:boxCornerRadiusBottomEnd="@dimen/space_10"
+                    app:boxCornerRadiusBottomStart="@dimen/space_10"
+                    app:boxCornerRadiusTopStart="@dimen/space_10"
+                    app:boxCornerRadiusTopEnd="@dimen/space_10">
 
                     <EditText
+                        android:paddingLeft="@dimen/space_10"
+                        android:background="@drawable/xml_rect"
+                        android:fontFamily="@font/lato_medium"
                         android:id="@+id/et_login_email"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
+                        android:layout_height="50dp"
                         android:ems="10"
                         android:maxLength="10"
                         android:singleLine="true"
                         android:hint="@string/phone"
                         android:inputType="phone"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/color_bg"
                         android:theme="@style/edittext_white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:padding="@dimen/space_10"
                     android:id="@+id/ti_login_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:textColorHint="@color/white"
-                    app:errorTextAppearance="@style/error_appearance"
-                    app:hintTextAppearance="@style/error_appearance">
+                    android:layout_height="wrap_content">
 
                     <EditText
+                        android:paddingLeft="@dimen/space_10"
+                        android:fontFamily="@font/lato_medium"
                         android:id="@+id/et_login_password"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/xml_rect"
                         android:ems="10"
                         android:hint="@string/password"
                         android:inputType="textPassword"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/color_bg"
                         android:theme="@style/edittext_white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
+                    android:layout_margin="@dimen/space_10"
+                    android:fontFamily="@font/lato_medium"
+                    android:textSize="16sp"
                     android:id="@+id/btn_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_10"
-                    android:background="@drawable/xml_rounded_corner_border_white"
+                    android:background="@drawable/xml_rounded_corner_blue_two"
                     android:text="@string/sign_in"
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:textSize="16sp"
+                    android:fontFamily="@font/lato_medium"
                     android:id="@+id/tv_login_forgot"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_20"
                     android:gravity="center"
                     android:text="@string/forgot_note"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/lato_medium"
+                    android:id="@+id/tv_login_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="@dimen/space_10"
+                    android:gravity="center"
+                    android:text="@string/sinup_note"
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_login_register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="@dimen/space_10"
-                android:gravity="center"
-                android:text="@string/sinup_note"
-                android:textColor="@color/white" />
 
         </RelativeLayout>
 
-    </ScrollView>
 </LinearLayout>
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>

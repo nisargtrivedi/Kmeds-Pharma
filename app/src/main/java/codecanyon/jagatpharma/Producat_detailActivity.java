@@ -41,7 +41,7 @@ public class Producat_detailActivity extends CommonAppCompatActivity implements 
     private List<Medical_category_list_model> medical_category_list_modelList = new ArrayList<>();
 
     private ImageView iv_img, iv_plus, iv_minus, iv_add;
-    private TextView tv_title, tv_about, tv_stock, tv_corporation, tv_generic, tv_discount, tv_price, tv_currency, tv_qty;
+    private TextView tv_title, tv_about, tv_stock, tv_corporation, tv_generic, tv_discount, tv_price, tv_currency, tv_qty,tvAddCart;
     private RecyclerView rv_suggest;
 
     private HashMap<String, String> map = new HashMap<>();
@@ -56,6 +56,7 @@ public class Producat_detailActivity extends CommonAppCompatActivity implements 
 
         dbcart = new DatabaseHandler(Producat_detailActivity.this);
 
+        tvAddCart=findViewById(R.id.tvAddCart);
         tv_title = (TextView) findViewById(R.id.tv_detail_title);
         tv_about = (TextView) findViewById(R.id.tv_detail_desc);
         tv_stock = (TextView) findViewById(R.id.tv_detail_stock);
@@ -107,7 +108,7 @@ public class Producat_detailActivity extends CommonAppCompatActivity implements 
         map.put("mfg_name", mfg_name);
 
         Picasso.with(this)
-                .load(BaseURL.IMG_PRODUCT_URL + getimage)
+                .load(R.drawable.medicines)
                 .placeholder(R.drawable.ic_loading)
                 .into(iv_img);
 
@@ -144,6 +145,7 @@ public class Producat_detailActivity extends CommonAppCompatActivity implements 
         iv_plus.setOnClickListener(this);
         iv_add.setOnClickListener(this);
         iv_img.setOnClickListener(this);
+        tvAddCart.setOnClickListener(this);
 
         if (ConnectivityReceiver.isConnected()) {
             makeGetSuggest(category_id);
@@ -254,6 +256,33 @@ public class Producat_detailActivity extends CommonAppCompatActivity implements 
 
         } else if (id == R.id.iv_detail_img) {
             showImages(getimage);
+        }else if (id == R.id.tvAddCart) {
+
+            if (!tv_qty.getText().toString().equalsIgnoreCase("0")) {
+
+                Double items = Double.parseDouble(tv_qty.getText().toString());
+                Double price = Double.parseDouble(map.get("price"));
+
+                if (!map.get("discount").isEmpty() && !map.get("discount").equalsIgnoreCase("0")) {
+
+                    dbcart.setCart(map, Float.valueOf(tv_qty.getText().toString()),
+                            Double.parseDouble(getDiscountPrice(map.get("discount"), "" + price * items, false)),
+                            Double.parseDouble(getDiscountPrice(map.get("discount"), "" + price * items, true)));
+                } else {
+                    dbcart.setCart(map, Float.valueOf(tv_qty.getText().toString()),
+                            price * items,
+                            price * items);
+                }
+
+                iv_add.setBackgroundResource(R.drawable.ic_cart_update);
+            } else {
+                dbcart.removeItemFromCart(map.get("product_id"));
+                iv_add.setBackgroundResource(R.drawable.ic_menu_cart);
+            }
+
+            CommonAppCompatActivity commonAppCompatActivity = new CommonAppCompatActivity();
+            commonAppCompatActivity.updateCounter(Producat_detailActivity.this);
+
         }
     }
 

@@ -182,7 +182,7 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.ProductHolde
         Double items = Double.parseDouble(tv_contetiy.getText().toString());
         Double price = Double.parseDouble(map.get("price"));
 
-        tv_price.setText("" + price * items);
+        tv_price.setText("" + String.format("%.2f",price * items));
 
         if (!map.get("discount").isEmpty() && !map.get("discount").equalsIgnoreCase("0")) {
             tv_discount.setText(getDiscountPrice(map.get("discount"), "" + price * items, false));
@@ -252,7 +252,7 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.ProductHolde
 
     // update intent for update current activity using broadcast intent
     private void updateintent() {
-        Intent updates = new Intent("GetPills_cart");
+        Intent updates =  new Intent("GetPills_cart");
         updates.putExtra("type", "update");
         activity.sendBroadcast(updates);
     }

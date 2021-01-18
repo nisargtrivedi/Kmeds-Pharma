@@ -24,6 +24,9 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.navigation:navigation-fragment:2.1.0'
+    implementation 'androidx.navigation:navigation-ui:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -44,6 +47,11 @@ dependencies {
     implementation 'com.github.yalantis:ucrop:2.2.2'
     implementation "com.karumi:dexter:5.0.0"
     implementation 'org.jsoup:jsoup:1.10.2'
+
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation 'com.github.jama5262:CarouselView:1.1.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

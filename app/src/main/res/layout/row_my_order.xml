@@ -28,6 +28,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/lato_medium"
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -36,6 +37,7 @@
                     android:textSize="@dimen/text_18" />
 
                 <TextView
+                    android:fontFamily="@font/lato_regular"
                     android:id="@+id/tv_my_order_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -45,6 +47,7 @@
             </LinearLayout>
 
             <TextView
+                android:fontFamily="@font/lato_medium"
                 android:id="@+id/tv_my_order_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,12 +71,14 @@
                 android:layout_marginEnd="@dimen/space_5">
 
                 <TextView
+                    android:fontFamily="@font/lato_medium"
                     android:id="@+id/textView43"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/date" />
 
                 <TextView
+                    android:fontFamily="@font/lato_regular"
                     android:id="@+id/tv_my_order_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,12 +92,14 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/lato_medium"
                     android:id="@+id/textView48"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/payment_type" />
 
                 <TextView
+                    android:fontFamily="@font/lato_regular"
                     android:id="@+id/tv_my_order_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -113,12 +120,14 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/lato_medium"
                     android:id="@+id/tv_my_order_currency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/rs" />
 
                 <TextView
+                    android:fontFamily="@font/lato_regular"
                     android:id="@+id/tv_my_order_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -132,12 +141,14 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/lato_medium"
                     android:id="@+id/textView52"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/items" />
 
                 <TextView
+                    android:fontFamily="@font/lato_regular"
                     android:id="@+id/tv_my_order_items"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

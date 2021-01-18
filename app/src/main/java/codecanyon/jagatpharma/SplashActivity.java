@@ -59,48 +59,30 @@ public class SplashActivity extends AppCompatActivity {
         txt=findViewById(R.id.txt);
 
         sessionManagement = new Session_management(SplashActivity.this);
-        TranslateAnimation animation = new TranslateAnimation(0.0f, 600.0f,
-                0.0f, 0.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
-        animation.setDuration(2000);  // animation duration
-        animation.setRepeatCount(1);  // animation repeat count
-        animation.setRepeatMode(1);   // repeat animation (left to right, right to left )
-        animation.setFillAfter(true);
-        Animation aniSlide = AnimationUtils.loadAnimation(this,R.anim.zoom_out);
-        Animation aniSlide2 = AnimationUtils.loadAnimation(this,R.anim.zoom_in);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                imageView6.startAnimation(aniSlide2);
-
-                //txt.startAnimation(aniSlide2);
-            }
-        },1000);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt.setVisibility(View.VISIBLE);
-            }
-        },2000);
-        imageViewScooter.startAnimation(animation);
-        Thread background = new Thread() {
-            public void run() {
-
-                try {
-                    // Thread will sleep for 5 seconds
-
-                    sleep(3 * 1000);
-                    //imageView6.startAnimation(aniSlide);
-                    // After 5 seconds redirect to another intent
-                    checkAppPermissions();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        // start thread
-        background.start();
+//        TranslateAnimation animation = new TranslateAnimation(0.0f, 600.0f,
+//                0.0f, 0.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+//        animation.setDuration(2000);  // animation duration
+//        animation.setRepeatCount(1);  // animation repeat count
+//        animation.setRepeatMode(1);   // repeat animation (left to right, right to left )
+//        animation.setFillAfter(true);
+//        Animation aniSlide = AnimationUtils.loadAnimation(this,R.anim.zoom_out);
+//        Animation aniSlide2 = AnimationUtils.loadAnimation(this,R.anim.zoom_in);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                imageView6.startAnimation(aniSlide2);
+//
+//                //txt.startAnimation(aniSlide2);
+//            }
+//        },1000);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                txt.setVisibility(View.VISIBLE);
+//            }
+//        },2000);
+//        imageViewScooter.startAnimation(animation);
+        checkAppPermissions();
 
     }
 
@@ -180,13 +162,14 @@ public class SplashActivity extends AppCompatActivity {
                 mainIntent.putExtra("isPrescription", "true");
                 mainIntent.putExtra("pres_id", getIntent().getStringExtra("pres_id"));
             }
+            mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(mainIntent);
         }
         else {
             Intent loginIntent = new Intent(SplashActivity.this, LoginActivity.class);
+            loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(loginIntent);
         }
-        finish();
 
 
     }
@@ -253,7 +236,6 @@ public class SplashActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            finish();
                             try {
                                 go_next();
                             } catch (Exception ex) {

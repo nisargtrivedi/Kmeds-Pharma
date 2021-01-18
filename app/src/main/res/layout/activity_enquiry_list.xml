@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/white"
     android:layout_width="match_parent"
@@ -13,10 +14,10 @@
     android:id="@+id/tvMsg"
     android:textColor="@color/colorPrimary"
     android:gravity="center"
-    android:textSize="30sp"
+    android:textSize="@dimen/_20ssp"
     android:textStyle="bold"
     android:text="No Enquiry Found."
-    android:fontFamily="@font/f"
+    android:fontFamily="@font/lato_medium"
     android:layout_width="match_parent"
     android:layout_height="match_parent"></TextView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

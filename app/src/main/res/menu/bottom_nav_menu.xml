@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:orderInCategory="10"
+        app:showAsAction="never"
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home"
+        android:title="@string/title_home" />
+
+    <item
+        android:orderInCategory="11"
+        app:showAsAction="never"
+        android:id="@+id/btnWhatsapp"
+        android:icon="@drawable/whatsapp_one"
+        android:title="Whatsapp" />
+
+    <item
+        android:orderInCategory="12"
+        app:showAsAction="never"
+        android:id="@+id/navigation_myorder"
+        android:icon="@drawable/order"
+        android:title="My Orders" />
+
+
+    <item
+        android:orderInCategory="13"
+        app:showAsAction="never"
+        android:id="@+id/navigation_call"
+        android:icon="@drawable/call_ic"
+        android:title="Call" />
+    <item
+        android:orderInCategory="14"
+        app:showAsAction="never"
+        android:id="@+id/navigationprofile"
+        android:icon="@drawable/profile_ic"
+        android:title="Profile" />
+
+</menu>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_gravity="center"
+        android:src="@drawable/wallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></ImageView>
+        <View
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"></View>
+        <TextView
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/green"
+        android:textSize="@dimen/_16ssp"
+        android:gravity="center|left"
+        android:text="@string/let_your_friends_fill_your_wallet"
+        android:fontFamily="@font/lato_medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
+        <View
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"></View>
+
+        <TextView
+        android:textColor="@color/black"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:textSize="@dimen/_13ssp"
+        android:gravity="center|left"
+        android:text="@string/earn_while_sharing_your_good_experience_with_your_friend_and_family_let_your_friend_fill_their_monthly_medicines_from_your_most_satisfied_online_pharmacy"
+        android:fontFamily="@font/lato_regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
+        <View
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"></View>
+
+    <TextView
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/red"
+        android:textSize="@dimen/_14ssp"
+        android:gravity="center|left"
+        android:text="@string/_1_share_kmeds_app_with_your_friends_and_family"
+        android:fontFamily="@font/lato_medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
+
+    <TextView
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/red"
+        android:textSize="@dimen/_14ssp"
+        android:gravity="center|left"
+        android:text="@string/_2_you_get_rs_200_in_your_wallet_after_your_friend_s_first_successful"
+        android:fontFamily="@font/lato_medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
+
+    <TextView
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/red"
+        android:textSize="@dimen/_14ssp"
+        android:gravity="center|left"
+        android:text="@string/_3_your_friend_get_rs_200_in_their_wallet"
+        android:fontFamily="@font/lato_medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
+<View
+    android:layout_marginTop="@dimen/_5sdp"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_1sdp"></View>
+<TextView
+    android:textSize="@dimen/_18ssp"
+    android:gravity="center"
+    android:text="MY REFERRAL CODE"
+    android:fontFamily="@font/lato_bold"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></TextView>
+        <View
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"></View>
+    <TextView
+        android:id="@+id/referallCode"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_20ssp"
+        android:layout_marginLeft="@dimen/_20ssp"
+        android:background="@drawable/ticket"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="@dimen/_13ssp"
+        android:text="00"
+        android:fontFamily="@font/lato_bold"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"></TextView>
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>

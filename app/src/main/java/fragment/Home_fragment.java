@@ -5,18 +5,32 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationMenu;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.jama.carouselview.CarouselView;
+import com.jama.carouselview.CarouselViewListener;
+import com.jama.carouselview.enums.IndicatorAnimationType;
+import com.jama.carouselview.enums.OffsetType;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -26,6 +40,7 @@ import Config.BaseURL;
 import adapter.Home_slider_adapter;
 import adapter.Home_suggetion_adapter;
 import codecanyon.jagatpharma.EditMedicine;
+import codecanyon.jagatpharma.Edit_profileActivity;
 import codecanyon.jagatpharma.LoginActivity;
 import codecanyon.jagatpharma.MainActivity;
 import codecanyon.jagatpharma.Medical_productActivity;
@@ -33,6 +48,7 @@ import codecanyon.jagatpharma.My_orderActivity;
 import codecanyon.jagatpharma.Prescription_listActivity;
 import codecanyon.jagatpharma.Producat_detailActivity;
 import codecanyon.jagatpharma.R;
+import codecanyon.jagatpharma.ReferralCode;
 import codecanyon.jagatpharma.SearchActivity;
 import codecanyon.jagatpharma.Upload_prescriptionActivity;
 import model.Medical_category_list_model;
@@ -56,7 +72,10 @@ public class Home_fragment extends Fragment implements View.OnClickListener {
 
     private RecyclerView rv_slider, rv_suggest;
     private TextView tv_upload, tv_medical, tv_search;
-    ImageView btnWhatsapp,btnCall,tv_prescription,tvOrder;
+    ImageView btnWhatsapp,btnCall,tv_prescription;
+    BottomNavigationView nav_view;
+    ImageView llProduct,tv_home_prescription,imgReferral;
+    CarouselView carouselView;
 
     public Home_fragment() {
         // Required empty public constructor
@@ -65,24 +84,26 @@ public class Home_fragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+         carouselView= view.findViewById(R.id.cv);
 
         tv_prescription = (ImageView) view.findViewById(R.id.tv_home_prescription);
         tv_upload = (TextView) view.findViewById(R.id.tv_home_upload);
-
+        imgReferral=view.findViewById(R.id.imgReferral);
         tv_search = (TextView) view.findViewById(R.id.tv_home_search);
         rv_slider = (RecyclerView) view.findViewById(R.id.rv_home_slider);
         rv_suggest = (RecyclerView) view.findViewById(R.id.rv_home_suggested);
-        btnCall=(ImageView) view.findViewById(R.id.btnCall);
-        btnWhatsapp=(ImageView) view.findViewById(R.id.btnWhatsapp);
-        tvOrder=view.findViewById(R.id.tvOrder);
-
+       // btnCall=(ImageView) view.findViewById(R.id.btnCall);
+        //btnWhatsapp=(ImageView) view.findViewById(R.id.btnWhatsapp);
+        nav_view=view.findViewById(R.id.nav_view);
+        llProduct=view.findViewById(R.id.llProduct);
+        tv_home_prescription=view.findViewById(R.id.tv_home_prescription);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rv_slider.setLayoutManager(linearLayoutManager);
@@ -90,11 +111,9 @@ public class Home_fragment extends Fragment implements View.OnClickListener {
 
         tv_search.setOnClickListener(this);
         tv_upload.setOnClickListener(this);
-        tvOrder.setOnClickListener(this);
-//        tv_medical.setOnClickListener(this);
         tv_prescription.setOnClickListener(this);
-        btnCall.setOnClickListener(this);
-        btnWhatsapp.setOnClickListener(this);
+        //btnCall.setOnClickListener(this);
+        //btnWhatsapp.setOnClickListener(this);
 
         // check internet connection is available or not
         if (ConnectivityReceiver.isConnected()) {
@@ -126,6 +145,29 @@ public class Home_fragment extends Fragment implements View.OnClickListener {
 
             }
         }));
+        imgReferral.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), ReferralCode.class);
+                startActivity(i);
+            }
+        });
+
+        llProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), Medical_productActivity.class);
+                startActivity(i);
+            }
+        });
+
+        tv_home_prescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), Medical_productActivity.class);
+                startActivity(i);
+            }
+        });
 
         rv_suggest.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), rv_suggest, new RecyclerTouchListener.OnItemClickListener() {
             @Override
@@ -158,6 +200,55 @@ public class Home_fragment extends Fragment implements View.OnClickListener {
             }
         }));
 
+        nav_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.btnWhatsapp:
+                        String contact = "+91 7041681684"; // use country code with your phone number
+                        String url = "https://api.whatsapp.com/send?phone=" + contact;
+                        try {
+                            PackageManager pm = getActivity().getPackageManager();
+                            pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+                            Intent in = new Intent(Intent.ACTION_VIEW);
+                            in.setData(Uri.parse(url));
+                            startActivity(in);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            Toast.makeText(getActivity(), "Whatsapp app not installed in your phone", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                        break;
+
+                    case R.id.navigation_call:
+                        try {
+                            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                            callIntent.setData(Uri.parse("tel:" + "7041681684"));
+                            startActivity(callIntent);
+                        }catch (Exception ex){
+
+                        }
+                        break;
+                    case R.id.navigation_myorder:
+                        try {
+                            Intent commonIntent = new Intent(getActivity(), My_orderActivity.class);
+                            startActivity(commonIntent);
+                        }catch (Exception ex){
+
+                        }
+                        break;
+                    case R.id.navigationprofile:
+                        try {
+                            Intent commonIntent = new Intent(getActivity(), Edit_profileActivity.class);
+                            startActivity(commonIntent);
+                        }catch (Exception ex){
+
+                        }
+                        break;
+
+                }
+                return true;
+            }
+        });
         return view;
     }
 
@@ -167,11 +258,7 @@ public class Home_fragment extends Fragment implements View.OnClickListener {
 
         Intent i = null;
 
-        if(id==R.id.btnCall){
-            Intent callIntent = new Intent(Intent.ACTION_DIAL);
-            callIntent.setData(Uri.parse("tel:"+"7041681684"));
-            startActivity(callIntent);
-        }else if(id==R.id.btnWhatsapp){
+       if(id==R.id.btnWhatsapp){
             String contact = "+91 7041681684"; // use country code with your phone number
             String url = "https://api.whatsapp.com/send?phone=" + contact;
             try {
@@ -198,9 +285,6 @@ public class Home_fragment extends Fragment implements View.OnClickListener {
             i = new Intent(getActivity(), EditMedicine.class);
         } else if (id == R.id.tv_home_search) {
             i = new Intent(getActivity(), SearchActivity.class);
-        }else if (id == R.id.tvOrder) {
-            Intent commonIntent = new Intent(getActivity(), My_orderActivity.class);
-            startActivity(commonIntent);
         }
 //        else if (id == R.id.tv_home_medical) {
 //            i = new Intent(getActivity(), Medical_productActivity.class);
@@ -231,8 +315,28 @@ public class Home_fragment extends Fragment implements View.OnClickListener {
                 rv_slider.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 
-            }
 
+                carouselView.setSize(slider_modelList.size());
+                carouselView.setResource(R.layout.row_home_slider);
+                carouselView.setAutoPlay(true);
+                carouselView.setIndicatorAnimationType(IndicatorAnimationType.THIN_WORM);
+                carouselView.setCarouselOffset(OffsetType.CENTER);
+                carouselView.setCarouselViewListener(new CarouselViewListener() {
+                    @Override
+                    public void onBindView(View view, int position) {
+                        // Example here is setting up a full image carousel
+                        util.CustomImageView imageView = view.findViewById(R.id.iv_home_slider);
+                      //  imageView.setImageDrawable(getResources().getDrawable(images[position]));
+                        Picasso.with(getActivity())
+                                .load(BaseURL.IMG_SLIDER_URL+ slider_modelList.get(position).getSlider_image())
+                                .placeholder(R.drawable.slider_loading)
+                                .into(imageView);
+
+                    }
+                });
+                // After you finish setting up, show the CarouselView
+                carouselView.show();
+            }
             @Override
             public void VError(String responce) {
                 Log.e(TAG, responce);
@@ -270,5 +374,26 @@ public class Home_fragment extends Fragment implements View.OnClickListener {
         }, true, getActivity());
         task.execute();
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
 
+            case R.id.btnWhatsapp:
+                String contact = "+91 7041681684"; // use country code with your phone number
+                String url = "https://api.whatsapp.com/send?phone=" + contact;
+                try {
+                    PackageManager pm = getActivity().getPackageManager();
+                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+                    Intent in = new Intent(Intent.ACTION_VIEW);
+                    in.setData(Uri.parse(url));
+                    startActivity(in);
+                } catch (PackageManager.NameNotFoundException e) {
+                    Toast.makeText(getActivity(), "Whatsapp app not installed in your phone", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+
+                return true;
+            }
+        return super.onOptionsItemSelected(item);
+    }
 }

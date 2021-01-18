@@ -27,6 +27,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -378,14 +379,16 @@ public class Confirm_detailActivity extends CommonAppCompatActivity implements V
 
             tv_shipping_charge.setText(prefs_address.getString("delivery_charge", null));
             Double total_amount = Double.parseDouble(dbcart.getTotalDiscountAmount()) + Double.parseDouble(prefs_address.getString("delivery_charge", null));
-            tv_total.setText("" + total_amount);
+            DecimalFormat f = new DecimalFormat("##.00");
+
+            tv_total.setText("" +f.format(Math.round(total_amount*100)/100));
             tv_address_detail.setText(sb);
         }
 
         if (offer_coupon != null) {
             String total_price = tv_total.getText().toString();
             String coupon_pirce = String.format("%.2f", getDiscountPrice(offer_discount, total_price, false));
-            net_amount = String.format("%.2f", getDiscountPrice(offer_discount, total_price, true));
+            net_amount = String.format("%.2f", Math.round(getDiscountPrice(offer_discount, total_price, true)));
             tv_coupon_price.setText(coupon_pirce);
             tv_net_amount.setText(total_price + " - " + coupon_pirce + " = " + net_amount);
         }

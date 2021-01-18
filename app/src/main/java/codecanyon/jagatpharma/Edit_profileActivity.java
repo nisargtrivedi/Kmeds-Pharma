@@ -1,6 +1,8 @@
 package codecanyon.jagatpharma;
 
 import android.app.DatePickerDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -69,7 +71,7 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
 
     private TextInputLayout ti_firstname, ti_lastname, ti_email, ti_dob, ti_mobile, ti_address, ti_city;
     private EditText et_firstname, et_lastname, et_email, et_mobile, et_address, et_city;
-    private TextView tv_dob;
+    private TextView tv_dob,tvCopy,tvReferralCode;
     private ImageView iv_dob, iv_profile;
     private Spinner sp_gender;
     private Button btn_update;
@@ -86,6 +88,8 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_edit_profile);
 
         sessionManagement = new Session_management(this);
+        tvCopy=findViewById(R.id.tvCopy);
+        tvReferralCode=findViewById(R.id.tvReferralCode);
         ti_firstname = (TextInputLayout) findViewById(R.id.ti_profile_firstname);
         ti_lastname = (TextInputLayout) findViewById(R.id.ti_profile_lastname);
         ti_email = (TextInputLayout) findViewById(R.id.ti_profile_email);
@@ -129,6 +133,7 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
         et_email.setText(email);
         et_mobile.setText(mobile);
         tv_dob.setText(dob);
+        tvReferralCode.setText(mobile);
 
         if (getaddress != null && !getaddress.isEmpty()) {
             sp_gender.setSelection(gender.indexOf(getgender));
@@ -149,6 +154,25 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
         tv_dob.setOnClickListener(this);
         btn_update.setOnClickListener(this);
         iv_profile.setOnClickListener(this);
+        tvCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("REFERALCODE", mobile);
+                clipboard.setPrimaryClip(clip);
+                ConnectivityReceiver.showSnackbar(Edit_profileActivity.this,"Code Copied!");
+            }
+        });
+
+        tvReferralCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("REFERALCODE", mobile);
+                clipboard.setPrimaryClip(clip);
+                ConnectivityReceiver.showSnackbar(Edit_profileActivity.this,"Code Copied!");
+            }
+        });
 
     }
 

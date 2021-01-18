@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -62,9 +63,14 @@ public class Home_suggetion_adapter extends RecyclerView.Adapter<Home_suggetion_
     public void onBindViewHolder(Home_suggetion_adapter.MyViewHolder holder, int position) {
         Medical_category_list_model mList = modelList.get(position);
 
+//        Picasso.with(context)
+//                .load(BaseURL.IMG_PRODUCT_URL + mList.getProduct_image())
+//                .memoryPolicy(MemoryPolicy.NO_CACHE)
+//                .into(holder.image);
+
         Picasso.with(context)
-                .load(BaseURL.IMG_PRODUCT_URL + mList.getProduct_image())
-                .placeholder(R.drawable.ic_loading)
+                .load(R.drawable.medicines)
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .into(holder.image);
 
         holder.title.setText(mList.getProduct_name());

@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:name="codecanyon.jagatpharma.AppController"
+        android:name=".AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,7 +24,6 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.
      See README(https://goo.gl/l4GJaQ) for more.
@@ -38,32 +37,30 @@
         -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
-
-        <!-- start internet connection receiver -->
+            android:resource="@color/colorAccent" /> <!-- start internet connection receiver -->
         <receiver
             android:name="util.ConnectivityReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
-        </receiver>
-        <!-- end internet connection receiver -->
+        </receiver> <!-- end internet connection receiver -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ImagePickerActivity"></activity>
+        <activity android:name=".ImagePickerActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
-
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_path" />
         </provider>
+
         <service
             android:name="fcm.MyFirebaseMessagingService"
             tools:ignore="ExportedService">
@@ -73,7 +70,7 @@
         </service>
 
         <activity
-            android:name="codecanyon.jagatpharma.SplashActivity"
+            android:name=".SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -83,85 +80,90 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="codecanyon.jagatpharma.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="codecanyon.jagatpharma.Producat_detailActivity" />
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Producat_detailActivity" android:label="Medicine Details" />
         <activity
-            android:name="codecanyon.jagatpharma.Prescription_listActivity"
+            android:name=".Prescription_listActivity"
             android:label="@string/prescription"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".EnquiryList"
+            android:label="@string/enquiry" />
+        <activity android:label="My Wallet" android:name=".MyWallet">
+
+        </activity>
+        <activity android:label="Referral Code" android:name=".ReferralCode">
+
+        </activity>
 
         <activity
-            android:parentActivityName=".MainActivity"
-            android:name="codecanyon.jagatpharma.EnquiryList"
-            android:label="@string/enquiry"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="codecanyon.jagatpharma.RegisterActivity"
+            android:name=".RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="codecanyon.jagatpharma.MainActivity"
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="codecanyon.jagatpharma.ForgotActivity"
+            android:name=".ForgotActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="codecanyon.jagatpharma.Upload_prescriptionActivity"
+            android:name=".Upload_prescriptionActivity"
             android:label="@string/upload_prescription" />
         <activity
-            android:name="codecanyon.jagatpharma.Medical_productActivity"
+            android:name=".Medical_productActivity"
             android:label="@string/medical_product" />
-        <activity android:name="codecanyon.jagatpharma.Medical_product_listActivity" />
+        <activity android:name=".Medical_product_listActivity" />
         <activity
-            android:name="codecanyon.jagatpharma.SearchActivity"
+            android:name=".SearchActivity"
             android:label="@string/app_name" />
         <activity
-            android:name="codecanyon.jagatpharma.CartActivity"
+            android:name=".CartActivity"
             android:label="@string/cart" />
-
         <activity
-            android:name="codecanyon.jagatpharma.ReOrderCartActivity"
+            android:name=".ReOrderCartActivity"
             android:label="@string/re_order" />
         <activity
-            android:name="codecanyon.jagatpharma.EditMedicine"
+            android:name=".EditMedicine"
             android:label="Enquiry" />
         <activity
-            android:name="codecanyon.jagatpharma.Edit_profileActivity"
+            android:name=".Edit_profileActivity"
             android:label="@string/edit_profile" />
         <activity
-            android:name="codecanyon.jagatpharma.Change_passwordActivity"
+            android:name=".Change_passwordActivity"
             android:label="@string/change_password" />
         <activity
-            android:name="codecanyon.jagatpharma.Add_delivery_addressActivity"
+            android:name=".Add_delivery_addressActivity"
             android:label="@string/delivery_address" />
         <activity
-            android:name="codecanyon.jagatpharma.Confirm_detailActivity"
+            android:name=".Confirm_detailActivity"
             android:label="@string/confirm_detail" />
         <activity
-            android:name="codecanyon.jagatpharma.Delivery_addressActivity"
+            android:name=".Delivery_addressActivity"
             android:label="@string/delivery_address" />
         <activity
-            android:name="codecanyon.jagatpharma.Payment_detailActivity"
+            android:name=".Payment_detailActivity"
             android:label="@string/payment" />
         <activity
-            android:name="codecanyon.jagatpharma.OffersActivity"
+            android:name=".OffersActivity"
             android:label="@string/offer" />
-        <activity android:name="codecanyon.jagatpharma.Offers_detailActivity" />
+        <activity android:name=".Offers_detailActivity" />
         <activity
-            android:name="codecanyon.jagatpharma.Thanks_orderActivity"
-            android:label="@string/app_name" />
+            android:name=".Thanks_orderActivity"
+            android:label="Thank You for Order" />
         <activity
-            android:name="codecanyon.jagatpharma.My_orderActivity"
+            android:name=".My_orderActivity"
             android:label="@string/my_orders" />
-        <activity android:name="codecanyon.jagatpharma.My_order_detailActivity" />
+        <activity android:name=".My_order_detailActivity" />
         <activity
-            android:name="codecanyon.jagatpharma.My_prescriptionActivity"
+            android:name=".My_prescriptionActivity"
             android:label="@string/upload_prescription" />
-        <activity android:name="codecanyon.jagatpharma.My_prescription_viewActivity" />
+        <activity android:name=".My_prescription_viewActivity" />
         <activity
-            android:name="codecanyon.jagatpharma.NotificationActivity"
+            android:name=".NotificationActivity"
             android:label="@string/notification" />
-        <activity android:name="codecanyon.jagatpharma.Notification_detailActivity" />
+        <activity android:name=".Notification_detailActivity" />
     </application>
 
 </manifest>

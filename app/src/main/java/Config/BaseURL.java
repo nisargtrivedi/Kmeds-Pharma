@@ -60,6 +60,8 @@ public class BaseURL {
 
     public static String LIST_ENQUIRY = BASE_URL + "api/list_enquiry.php";
 
+    public static String WALLET_AMOUNT = BASE_URL + "api/wallet_api.php";
+
     public static String GET_ORDER_DETAIL_URL = BASE_URL + "index.php/rest/order/order_details";
 
     public static String CANCEL_ORDER_URL = BASE_URL + "index.php/rest/order/cancel_order";

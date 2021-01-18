@@ -34,6 +34,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_medium"
                 android:id="@+id/tv_cart_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,6 +59,8 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_medium"
                         android:id="@+id/textView18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -69,13 +73,15 @@
                         android:src="@drawable/ic_minus" />
 
                     <TextView
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_medium"
                         android:id="@+id/tv_cart_qty"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/space_5"
-                        android:layout_marginLeft="@dimen/space_5"
-                        android:layout_marginRight="@dimen/space_5"
                         android:layout_marginStart="@dimen/space_5"
+                        android:layout_marginLeft="@dimen/space_5"
+                        android:layout_marginEnd="@dimen/space_5"
+                        android:layout_marginRight="@dimen/space_5"
                         android:layout_weight="1"
                         android:text="0" />
 
@@ -97,12 +103,16 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_medium"
                         android:id="@+id/textView32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/rs" />
 
                     <TextView
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="@font/lato_medium"
                         android:id="@+id/tv_cart_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -120,12 +130,16 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
                     <TextView
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_medium"
                         android:id="@+id/tv_cart_discount_currency"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/rs" />
 
                     <TextView
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="@font/lato_medium"
                         android:id="@+id/tv_cart_discount_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

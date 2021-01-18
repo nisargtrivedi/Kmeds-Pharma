@@ -11,6 +11,9 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import androidx.core.app.NotificationCompat;
+
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.util.Log;
 import android.util.Patterns;
@@ -30,8 +33,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import Config.BaseURL;
+import codecanyon.jagatpharma.CommonAppCompatActivity;
+import codecanyon.jagatpharma.Producat_detailActivity;
 import codecanyon.jagatpharma.R;
 import codecanyon.jagatpharma.SplashActivity;
+import util.DatabaseHandler;
 
 /**
  * Created by Rajesh on 2017-10-07.
@@ -76,12 +82,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 if (isPrescription) {
                     pres_id = object.getString("obj");
                 }
+                DatabaseHandler db=new DatabaseHandler(this);
+                boolean ans=db.setNotificationBell(1);
 
+                if(ans){
+                    Log.d(TAG, "INSERT DATA INTO NOTIFICATION TABLE: " + ans);
+                    showBedge(this);
+                }
                 sendNotification(object.getString("message"),
                         object.getString("title"),
                         object.getString("image"),
                         object.getString("created_at"),
                         isorder, isPrescription, pres_id);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -98,6 +111,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
     // [END receive_message]
 
+    public void showBedge(Context context){
+        Handler handler=new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+            CommonAppCompatActivity commonAppCompatActivity=new CommonAppCompatActivity();
+            commonAppCompatActivity.updateBellCounter();
+            }
+        });
+    }
     private void sendNotification(String message, String title, String imageUrl, String created_at,
                                   boolean isorder, boolean isPrescription, String pres_id) {
         Intent intent = new Intent(this, SplashActivity.class);

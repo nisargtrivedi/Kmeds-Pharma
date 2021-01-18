@@ -33,6 +33,11 @@
                 android:id="@+id/nav_enquiry"
                 android:icon="@drawable/enquiry_24"
                 android:title="@string/enquiry" />
+
+            <item
+                android:id="@+id/nav_wallet"
+                android:icon="@drawable/ic_wallet"
+                android:title="@string/wallet" />
         </menu>
     </item>
 
@@ -59,6 +64,12 @@
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="@string/share" />
+
+            <item
+                android:id="@+id/nav_privacy"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/privacy_and_terms" />
+
 
         </menu>
     </item>

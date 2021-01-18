@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="codecanyon.jagatpharma.RegisterActivity">
 
@@ -29,15 +29,16 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/space_10"
                 app:srcCompat="@drawable/app_top_logo" />
+
             <TextView
-                android:fontFamily="@font/f"
+                android:fontFamily="@font/lato_medium"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textSize="25sp"
-                android:textColor="@color/white"
-                android:text="@string/app_name"
+                android:textColor="@color/black"
+                android:text="@string/new_member"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/space_50"></TextView>
+                android:layout_height="@dimen/space_50" />
 
 
             <LinearLayout
@@ -48,47 +49,49 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ti_reg_firstname"
+                    android:layout_marginRight="@dimen/_3sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/white"
-                    android:textColorHint="@color/white"
-                    app:errorTextAppearance="@style/error_appearance"
-                    app:hintTextAppearance="@style/error_appearance">
+                    android:backgroundTint="@color/black"
+                    android:textColorHint="@color/black">
 
                     <EditText
+                        android:fontFamily="@font/lato_medium"
+                        android:paddingLeft="@dimen/_10sdp"
                         android:id="@+id/et_reg_firstname"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
+                        android:layout_height="@dimen/_40sdp"
+                        android:background="@drawable/xml_rect"
                         android:ems="10"
                         android:hint="@string/first_name"
                         android:inputType="textCapSentences"
                         android:nextFocusDown="@+id/et_reg_lastname"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/color_bg"
                         android:theme="@style/edittext_white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginLeft="@dimen/_3sdp"
                     android:id="@+id/ti_reg_lastname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/white"
-                    android:textColorHint="@color/white"
-                    app:errorTextAppearance="@style/error_appearance"
-                    app:hintTextAppearance="@style/error_appearance">
+                    android:backgroundTint="@color/black"
+                    android:textColorHint="@color/black">
 
                     <EditText
+                        android:fontFamily="@font/lato_medium"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:background="@drawable/xml_rect"
                         android:id="@+id/et_reg_lastname"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
+                        android:layout_height="@dimen/_40sdp"
                         android:ems="10"
                         android:hint="@string/last_name"
                         android:inputType="textCapSentences"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/color_bg"
                         android:theme="@style/edittext_white" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -98,37 +101,31 @@
                 android:id="@+id/ti_reg_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:textColorHint="@color/white"
-                app:errorTextAppearance="@style/error_appearance"
-                app:hintTextAppearance="@style/error_appearance">
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black">
 
                 <EditText
+                    android:fontFamily="@font/lato_medium"
+                    android:background="@drawable/xml_rect"
                     android:id="@+id/et_reg_email"
+                    android:paddingLeft="@dimen/_10sdp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="@dimen/_40sdp"
                     android:ems="10"
                     android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/color_bg"
                     android:theme="@style/edittext_white" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="@dimen/_5sdp"
                 android:id="@+id/ti_reg_dob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:paddingBottom="@dimen/space_10"
-                android:paddingEnd="@dimen/space_5"
-                android:paddingLeft="@dimen/space_5"
-                android:paddingRight="@dimen/space_5"
-                android:paddingStart="@dimen/space_5"
-                android:textColorHint="@color/white"
-                app:errorTextAppearance="@style/error_appearance"
-                app:hintTextAppearance="@style/error_appearance">
+                android:textColorHint="@color/black">
 
                 <!--<EditText
                     android:id="@+id/et_reg_dob"
@@ -145,20 +142,22 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/xml_bottom_border"
+                    android:background="@drawable/xml_rect"
                     android:gravity="bottom">
 
                     <TextView
+                        android:fontFamily="@font/lato_medium"
+                        android:paddingLeft="@dimen/_10sdp"
                         android:id="@+id/tv_reg_dob"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:ems="10"
-                        android:gravity="bottom"
+                        android:gravity="center|left"
                         android:text="@string/dob"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/text_18" />
 
                     <ImageView
@@ -177,21 +176,21 @@
                 android:id="@+id/ti_reg_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:textColorHint="@color/white"
-                app:errorTextAppearance="@style/error_appearance"
-                app:hintTextAppearance="@style/error_appearance">
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black">
 
                 <EditText
+                    android:fontFamily="@font/lato_medium"
                     android:id="@+id/et_reg_mobile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/xml_rect"
                     android:ems="10"
+                    android:paddingLeft="@dimen/_10sdp"
                     android:hint="@string/mobile_number"
                     android:inputType="number"
                     android:maxLength="15"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/color_bg"
                     android:theme="@style/edittext_white" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -200,20 +199,20 @@
                 android:id="@+id/ti_reg_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:textColorHint="@color/white"
-                app:errorTextAppearance="@style/error_appearance"
-                app:hintTextAppearance="@style/error_appearance">
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black">
 
                 <EditText
+                    android:fontFamily="@font/lato_medium"
+                    android:paddingLeft="@dimen/_10sdp"
                     android:id="@+id/et_reg_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/xml_rect"
                     android:ems="10"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/color_bg"
                     android:theme="@style/edittext_white" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -222,39 +221,43 @@
                 android:id="@+id/ti_reg_conf_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:textColorHint="@color/white"
-                app:errorTextAppearance="@style/error_appearance"
-                app:hintTextAppearance="@style/error_appearance">
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black">
 
                 <EditText
+                    android:fontFamily="@font/lato_medium"
+                    android:paddingLeft="@dimen/_10sdp"
                     android:id="@+id/et_reg_conf_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/xml_rect"
                     android:ems="10"
                     android:hint="@string/confirm_password"
                     android:inputType="textPassword"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/color_bg"
                     android:theme="@style/edittext_white" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <CheckBox
+                android:textSize="@dimen/_14ssp"
+                android:fontFamily="@font/lato_medium"
                 android:id="@+id/chk_reg_terms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_5"
-                android:buttonTint="@color/white"
+                android:buttonTint="@color/black"
                 android:text="@string/register_chk_note"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <Button
+                android:textSize="@dimen/_14ssp"
+                android:fontFamily="@font/lato_medium"
                 android:id="@+id/btn_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_20"
-                android:background="@drawable/xml_rounded_corner_border_white"
+                android:background="@drawable/xml_rounded_corner_blue_two"
                 android:text="@string/register"
                 android:textColor="@color/white" />
         </LinearLayout>

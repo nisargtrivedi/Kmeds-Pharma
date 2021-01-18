@@ -1,6 +1,7 @@
 package codecanyon.jagatpharma;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,7 +31,7 @@ import util.ConnectivityReceiver;
 import util.NameValuePair;
 import util.Session_management;
 
-public class EnquiryList extends AppCompatActivity {
+public class EnquiryList extends CommonAppCompatActivity {
 
 
     RecyclerView rvEnquiries;
@@ -66,7 +67,7 @@ public class EnquiryList extends AppCompatActivity {
                 BaseURL.LIST_ENQUIRY, new CommonAsyTask.VJsonResponce() {
             @Override
             public void VResponce(String response) {
-              //  Log.e(TAG, response);
+                Log.e("ENQUIRY RESPONSE-->", response);
                 //System.out.println("REORDER ----->"+response);
                 List<model_enquiry> my_order_detail_modelList = new ArrayList<>();
 
@@ -74,12 +75,18 @@ public class EnquiryList extends AppCompatActivity {
                 Gson gson = new Gson();
                 Type listType = new TypeToken<List<model_enquiry>>() {
                 }.getType();
-
+                //System.out.println("TYPE--->"+listType.getTypeName().toString()+response);
                 // store gson values in list
-                my_order_detail_modelList = gson.fromJson(response, listType);
-                ItemAdapter adapter=new ItemAdapter(EnquiryList.this,my_order_detail_modelList,false);
-                rvEnquiries.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+
+                if(response.equalsIgnoreCase("No User Found.")){
+                    tvMsg.setVisibility(View.VISIBLE);
+                    rvEnquiries.setVisibility(View.GONE);
+                }else{
+                    my_order_detail_modelList = gson.fromJson(response, listType);
+                    ItemAdapter adapter = new ItemAdapter(EnquiryList.this, my_order_detail_modelList, false);
+                    rvEnquiries.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                }
 
                 if(my_order_detail_modelList!=null && my_order_detail_modelList.size()>0) {
                     tvMsg.setVisibility(View.GONE);

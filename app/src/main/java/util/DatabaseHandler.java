@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +44,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COLUMN_TOTAL_DISC_AMOUNT = "total_discount_amount";
     public static final String COLUMN_TOTAL_ITEM_PRICE = "total_item_price";
 
+    //Table Notification Count
+    public static final String NOTIFICATION_TABLE = "notification_tbl";
+
+    public static final String COLUMN_COUNT = "bell_count";
+    public static final String CO_ID = "bell_id";
+
+
+
     public DatabaseHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -72,7 +81,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + COLUMN_TITLE + " TEXT NOT NULL "
                 + ")";
 
+        String notiExe= "CREATE TABLE IF NOT EXISTS " + NOTIFICATION_TABLE + "(" + CO_ID + " integer primary key AUTOINCREMENT NOT NULL, "+ COLUMN_COUNT + " integer NOT NULL )";
+
         db.execSQL(exe);
+        db.execSQL(notiExe);
+
     }
 
     public boolean setCart(HashMap<String, String> map, Float Qty, Double Total_amount, Double Total_discount_amount) {
@@ -110,7 +123,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
+    public boolean setNotificationBell(int Qty) {
+        db = getWritableDatabase();
+            ContentValues values = new ContentValues();
 
+            values.put(COLUMN_COUNT, Qty);
+
+            db.insert(NOTIFICATION_TABLE, null, values);
+            return true;
+    }
     public boolean isInCart(String id) {
         db = getReadableDatabase();
         String qry = "Select *  from " + CART_TABLE + " where " + COLUMN_ID + " = " + id;
@@ -149,6 +170,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db = getReadableDatabase();
         String qry = "Select *  from " + CART_TABLE;
         Cursor cursor = db.rawQuery(qry, null);
+        return cursor.getCount();
+    }
+
+    public int getNotificationCount() {
+        db = getReadableDatabase();
+        String qry = "Select *  from " + NOTIFICATION_TABLE;
+        Cursor cursor = db.rawQuery(qry, null);
+        Log.d("NOTI----->",cursor.getCount()+"------");
         return cursor.getCount();
     }
 

@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
 
     private Session_management sessionManagement;
 
-    private TextView totalBudgetCount;
+    private TextView totalBudgetCount,totalBellCount;
     public final int GALLERY_REQUEST_CODE = 1000;
     public final int CAMERA_REQUEST_CODE = 1001;
 
@@ -259,8 +259,11 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main, menu);
 
         final MenuItem cart = menu.findItem(R.id.action_cart);
+        final MenuItem notification = menu.findItem(R.id.action_notification);
 
         View count = cart.getActionView();
+        View countNoti = notification.getActionView();
+
         count.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -269,10 +272,19 @@ public class MainActivity extends AppCompatActivity
                 menu.performIdentifierAction(cart.getItemId(), 0);
             }
         });
+        countNoti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                menu.performIdentifierAction(notification.getItemId(), 0);
+            }
+        });
 
         totalBudgetCount = (TextView) count.findViewById(R.id.tv_action_cart);
+        totalBellCount = (TextView) countNoti.findViewById(R.id.tv_action_notification);
+
 
         updateCounter();
+        updateBellCounter();
         return true;
     }
 
@@ -294,6 +306,16 @@ public class MainActivity extends AppCompatActivity
             }
             return true;
         }
+        if (id == R.id.action_notification) {
+            DatabaseHandler dbcart = new DatabaseHandler(MainActivity.this);
+            if (dbcart.getNotificationCount() > 0) {
+                Intent cartIntent = new Intent(this, NotificationActivity.class);
+                startActivity(cartIntent);
+            } else {
+                CommonAppCompatActivity.showToast(this, getResources().getString(R.string.cart_empty));
+            }
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -302,6 +324,12 @@ public class MainActivity extends AppCompatActivity
         if (totalBudgetCount != null) {
             DatabaseHandler dbcart = new DatabaseHandler(MainActivity.this);
             totalBudgetCount.setText("" + dbcart.getCartCount());
+        }
+    }
+    public void updateBellCounter() {
+        if (totalBellCount != null) {
+            DatabaseHandler dbcart = new DatabaseHandler(MainActivity.this);
+            totalBellCount.setText("" + dbcart.getNotificationCount());
         }
     }
 
@@ -338,6 +366,8 @@ public class MainActivity extends AppCompatActivity
             finish();
         }else if(id==R.id.nav_enquiry){
             i = new Intent(MainActivity.this, EnquiryList.class);
+        }else if(id==R.id.nav_wallet){
+            i = new Intent(MainActivity.this,MyWallet.class);
         }
 
         if (i != null) {
@@ -383,6 +413,7 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
         // update cart counter every time on app resume
         updateCounter();
+        updateBellCounter();
     }
     private String onCaptureImageResult(Intent data) {
         //profilepic.setImageBitmap(null);

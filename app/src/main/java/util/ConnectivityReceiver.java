@@ -71,5 +71,21 @@ public class ConnectivityReceiver extends BroadcastReceiver {
 
         snackbar.show();
     }
+    public static void showSnackbar(Context _context,String msg) {
+        View rootView = ((Activity) _context).getWindow().getDecorView().findViewById(android.R.id.content);
+
+        Snackbar snackbar = Snackbar
+                .make(rootView, msg, Snackbar.LENGTH_LONG);
+
+        // Changing message text color
+        snackbar.setActionTextColor(Color.GREEN);
+
+        // Changing action button text color
+        View sbView = snackbar.getView();
+        TextView textView = (TextView) sbView.findViewById(R.id.snackbar_text);
+        textView.setTextColor(Color.WHITE);
+
+        snackbar.show();
+    }
 
 }

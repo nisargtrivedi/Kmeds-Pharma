@@ -28,14 +28,14 @@
     <string name="lbl_choose_from_gallery">From camera roll</string>
 
     <string name="search_text">Search Medicines&#8230;</string>
-    <string name="upload_your_prescription">Upload your prescription!</string>
+    <string name="upload_your_prescription">Upload your prescription</string>
     <string name="looking_for">What you looking for?</string>
     <string name="suggested">Suggested</string>
     <string name="user_manage">User Manage</string>
     <string name="user_profile">User Profile</string>
     <string name="my_orders">My Orders</string>
-    <string name="upload_prescription">Upload Prescription</string>
-    <string name="view_offer">View Offers</string>
+    <string name="upload_prescription">View Upload Prescription</string>
+    <string name="view_offer">Offers and Discount</string>
     <string name="product">Products</string>
     <string name="prescription">Prescription</string>
     <string name="medical_product">Medical Products</string>
@@ -178,7 +178,24 @@
     <string name="notification">Notifications</string>
     <string name="na">NA</string>
     <string name="offer_discount">Offer Discount:\u0020</string>
-    <string name="enquiry">Enquiry</string>
+    <string name="enquiry">Medicine enquiry</string>
     <string name="do_you_need_dosage_label_on_medicine">Do you need dosage label on medicine ?</string>
+    <string name="wallet">Wallet</string>
+    <string name="privacy_and_terms">Privacy and Terms</string>
+    <string name="our_category">Our Category</string>
+    <string name="medicine_products">Suggested Medicines</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="new_member">New Member</string>
+    <string name="summary">Summary</string>
+    <string name="let_your_friends_fill_your_wallet">Let your friends fill your wallet</string>
+    <string name="earn_while_sharing_your_good_experience_with_your_friend_and_family_let_your_friend_fill_their_monthly_medicines_from_your_most_satisfied_online_pharmacy">Earn while sharing your good experience with your friend and family.Let your friend fill their monthly medicines from your most satisfied online pharmacy.</string>
+    <string name="_1_share_kmeds_app_with_your_friends_and_family">1) Share KMeds App with your Friends and Family.</string>
+    <string name="_2_you_get_rs_200_in_your_wallet_after_your_friend_s_first_successful">2) You get Rs.200 in your wallet after your friend\'s first successful...</string>
+    <string name="_3_your_friend_get_rs_200_in_their_wallet">3) Your friend get Rs.200 in their wallet.</string>
+    <string name="amount">Amount</string>
+    <string name="total_order_items">Total order items</string>
 
 </resources>

@@ -12,6 +12,7 @@
         android:layout_margin="@dimen/space_5">
 
         <TextView
+            android:fontFamily="@font/lato_medium"
             android:id="@+id/textView17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,6 +25,7 @@
             android:textColor="@color/black" />
 
         <TextView
+            android:fontFamily="@font/lato_medium"
             android:id="@+id/tv_confirm_address_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,6 +46,7 @@
         card_view:cardCornerRadius="4dp">
 
         <TextView
+            android:fontFamily="@font/lato_medium"
             android:id="@+id/tv_confirm_address_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,6 +60,7 @@
         android:layout_margin="@dimen/space_5">
 
         <TextView
+            android:fontFamily="@font/lato_medium"
             android:id="@+id/textView23"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,6 +73,7 @@
             android:textColor="@color/black" />
 
         <TextView
+            android:fontFamily="@font/lato_medium"
             android:id="@+id/tv_confirm_billing_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,18 +101,21 @@
             android:padding="@dimen/space_10">
 
             <TextView
+                android:fontFamily="@font/lato_medium"
                 android:id="@+id/tv_confirm_address_fname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
 
             <TextView
+                android:fontFamily="@font/lato_medium"
                 android:id="@+id/tv_confirm_address_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
 
             <TextView
+                android:fontFamily="@font/lato_medium"
                 android:id="@+id/tv_confirm_address_bill_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
