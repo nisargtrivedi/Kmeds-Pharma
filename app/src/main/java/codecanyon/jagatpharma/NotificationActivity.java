@@ -19,6 +19,7 @@ import adapter.Notification_adapter;
 import model.Notification_model;
 import util.CommonAsyTask;
 import util.ConnectivityReceiver;
+import util.DatabaseHandler;
 import util.NameValuePair;
 import util.RecyclerTouchListener;
 import util.Session_management;
@@ -38,6 +39,10 @@ public class NotificationActivity extends CommonAppCompatActivity {
 
         rv_notification = (RecyclerView) findViewById(R.id.rv_notification);
         rv_notification.setLayoutManager(new LinearLayoutManager(this));
+
+        DatabaseHandler databaseHandler=new DatabaseHandler(NotificationActivity.this);
+        databaseHandler.clearNotification();
+
 
         Session_management sessionManagement = new Session_management(this);
         String getuser_id = sessionManagement.getUserDetails().get(BaseURL.KEY_ID);

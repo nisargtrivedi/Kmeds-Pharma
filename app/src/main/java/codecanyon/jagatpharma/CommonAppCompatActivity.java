@@ -63,6 +63,7 @@ public class CommonAppCompatActivity extends AppCompatActivity {
         dbcart = new DatabaseHandler(this);
 
         updateCounter(this);
+        updateBellCounter();
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -128,8 +129,6 @@ public class CommonAppCompatActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         updateCounter(this);
-        updateBellCounter(
-
-        );
+        updateBellCounter();
     }
 }

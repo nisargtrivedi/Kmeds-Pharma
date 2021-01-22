@@ -230,7 +230,7 @@ public class SearchActivity extends CommonAppCompatActivity implements View.OnCl
                 rv_search.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 
-                CommonAppCompatActivity.showListToast(SearchActivity.this, medical_category_list_modelList.isEmpty());
+                //CommonAppCompatActivity.showListToast(SearchActivity.this, medical_category_list_modelList.isEmpty());
 
             }
 
@@ -238,7 +238,7 @@ public class SearchActivity extends CommonAppCompatActivity implements View.OnCl
             public void VError(String responce) {
                 Log.e(TAG, responce);
             }
-        }, true, this);
+        }, false, this);
         task.execute();
 
     }

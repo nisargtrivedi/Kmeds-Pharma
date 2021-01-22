@@ -17,7 +17,7 @@
     <ImageView
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_gravity="center"
-        android:src="@drawable/wallet"
+        android:src="@drawable/refer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></ImageView>
         <View
@@ -63,7 +63,7 @@
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:textColor="@color/red"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         android:gravity="center|left"
         android:text="@string/_1_share_kmeds_app_with_your_friends_and_family"
         android:fontFamily="@font/lato_medium"
@@ -75,7 +75,7 @@
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:textColor="@color/red"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         android:gravity="center|left"
         android:text="@string/_2_you_get_rs_200_in_your_wallet_after_your_friend_s_first_successful"
         android:fontFamily="@font/lato_medium"
@@ -87,7 +87,7 @@
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:textColor="@color/red"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         android:gravity="center|left"
         android:text="@string/_3_your_friend_get_rs_200_in_their_wallet"
         android:fontFamily="@font/lato_medium"
@@ -113,16 +113,15 @@
     <TextView
         android:id="@+id/referallCode"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_20ssp"
-        android:layout_marginLeft="@dimen/_20ssp"
         android:background="@drawable/ticket"
         android:textColor="@color/white"
         android:gravity="center"
         android:textSize="@dimen/_13ssp"
         android:text="00"
+        android:layout_gravity="center"
         android:fontFamily="@font/lato_bold"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp"></TextView>
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_80sdp"></TextView>
     </LinearLayout>
 </LinearLayout>
 </ScrollView>

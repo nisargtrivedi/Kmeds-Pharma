@@ -19,7 +19,16 @@
             android:orientation="vertical"
             android:padding="@dimen/space_10">
 
-            <include layout="@layout/include_image" />
+            <include android:visibility="gone" layout="@layout/include_image" />
+
+            <ImageView
+                android:scaleType="centerCrop"
+                android:visibility="visible"
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/login_header" />
 
             <ImageView
                 android:visibility="gone"

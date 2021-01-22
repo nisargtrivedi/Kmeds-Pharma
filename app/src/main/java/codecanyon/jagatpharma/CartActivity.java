@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -115,13 +116,20 @@ public class CartActivity extends CommonAppCompatActivity implements View.OnClic
                 loginIntent.putExtra("setfinish", "true");
                 startActivity(loginIntent);
             }
-        } else if (id == R.id.btn_cart_process) {
+        }
+        else if (id == R.id.btn_cart_process) {
             if (sessionManagement.isLoggedIn()) {
-                // start confirm detail activity
-                Intent i = new Intent(CartActivity.this, Confirm_detailActivity.class);
-                i.putExtra("offer_coupon", offer_coupon);
-                i.putExtra("offer_discount", offer_discount);
-                startActivity(i);
+
+                Double total_save = Double.parseDouble(dbcart.getTotalAmount()) - Double.parseDouble(dbcart.getTotalDiscountAmount());
+                if(total_save>=350) {
+                    // start confirm detail activity
+                    Intent i = new Intent(CartActivity.this, Confirm_detailActivity.class);
+                    i.putExtra("offer_coupon", offer_coupon);
+                    i.putExtra("offer_discount", offer_discount);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(CartActivity.this,"Please enter order greater than 350",Toast.LENGTH_LONG).show();
+                }
             } else {
                 Intent loginIntent = new Intent(CartActivity.this, LoginActivity.class);
                 loginIntent.putExtra("setfinish", "true");

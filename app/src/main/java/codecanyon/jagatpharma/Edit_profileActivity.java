@@ -635,7 +635,8 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
                 CommonAppCompatActivity.showToast(Edit_profileActivity.this, "Sorry! Failed to capture image");
             }
 
-        }else if (requestCode == GALLERY_REQUEST_CODE) {
+        }
+        else if (requestCode == GALLERY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
 
                 // successfully captured the image
@@ -660,7 +661,8 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
                 CommonAppCompatActivity.showToast(Edit_profileActivity.this, "Sorry! Failed to capture image");
             }
 
-        } else if ((requestCode == GALLERY_REQUEST_CODE1)) {
+        }
+        else if ((requestCode == GALLERY_REQUEST_CODE1)) {
             try {
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
@@ -774,9 +776,12 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
         getMenuInflater().inflate(R.menu.main, menu);
 
         MenuItem cart = menu.findItem(R.id.action_cart);
+        MenuItem notification = menu.findItem(R.id.action_notification);
+
         MenuItem change_password = menu.findItem(R.id.action_change_password);
 
         cart.setVisible(false);
+        notification.setVisible(false);
         change_password.setVisible(true);
 
         return super.onCreateOptionsMenu(menu);
@@ -797,5 +802,4 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
                 return super.onOptionsItemSelected(menuItem);
         }
     }
-
 }

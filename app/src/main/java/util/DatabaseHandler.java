@@ -262,6 +262,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db = getReadableDatabase();
         db.execSQL("delete from " + CART_TABLE);
     }
+    public void clearNotification() {
+        db = getReadableDatabase();
+        db.execSQL("delete from " + NOTIFICATION_TABLE);
+    }
 
     public void removeItemFromCart(String id) {
         db = getReadableDatabase();
