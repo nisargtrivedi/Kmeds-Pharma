@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
@@ -25,11 +27,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import Config.BaseURL;
+import model.WalletModel;
 import util.CommonAsyTask;
 import util.ConnectivityReceiver;
 import util.DatabaseHandler;
@@ -65,7 +70,7 @@ public class Payment_detailActivity extends CommonAppCompatActivity implements V
     /* paypal integration end */
 
     private RadioButton rb_cash, rb_paypal;
-    private TextView tv_total_price;
+    private TextView tv_total_price,tvWallet,tvOrderAmount;
     private Button btn_payment;
     private CardView cv_paypal;
 
@@ -77,14 +82,15 @@ public class Payment_detailActivity extends CommonAppCompatActivity implements V
     private String offer_coupon = "";
     private String getuser_id = "";
     private JSONArray passArray = null;
-
+    private String walletDiscount="0";
     private DatabaseHandler dbcart;
+    private Session_management sessionManagement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_detail);
-
+        sessionManagement = new Session_management(this);
         dbcart = new DatabaseHandler(this);
 
         // intialize Session_management class
@@ -97,6 +103,8 @@ public class Payment_detailActivity extends CommonAppCompatActivity implements V
         tv_total_price = (TextView) findViewById(R.id.tv_payment_price);
         btn_payment = (Button) findViewById(R.id.btn_payment);
         cv_paypal = (CardView) findViewById(R.id.cv_payment_paypal);
+        tvWallet=findViewById(R.id.tvWallet);
+        tvOrderAmount=findViewById(R.id.tvOrderAmount);
 
         // getting values from another activity
         total_price = getIntent().getStringExtra("total_price");
@@ -107,9 +115,9 @@ public class Payment_detailActivity extends CommonAppCompatActivity implements V
         }
 
         if(!TextUtils.isEmpty(total_price))
-            tv_total_price.setText(String.format("%.2f",Double.parseDouble(total_price)));
+            tvOrderAmount.setText("₹ " +String.format("%.2f",Double.parseDouble(total_price)));
         else
-            tv_total_price.setText(String.format("%.2f",0));
+            tvOrderAmount.setText("₹ " +String.format("%.2f",0));
 
         rb_cash.setOnClickListener(this);
         rb_paypal.setOnClickListener(this);
@@ -121,7 +129,8 @@ public class Payment_detailActivity extends CommonAppCompatActivity implements V
 
         // check internet connection is available or not
         if (ConnectivityReceiver.isConnected()) {
-            makeGetPaypal();
+            //makeGetPaypal();
+            wallet();
         } else {
             // display snackbar in activity
             ConnectivityReceiver.showSnackbar(this);
@@ -202,6 +211,8 @@ public class Payment_detailActivity extends CommonAppCompatActivity implements V
         params.add(new NameValuePair("payment_ref", payment_ref));
         params.add(new NameValuePair("payment_paypal_amount", payment_paypal_amount));
         params.add(new NameValuePair("offer_coupon", offer_coupon));
+        params.add(new NameValuePair("wallet_discount", walletDiscount));
+
 
         String finalUrl = BaseURL.SEND_ORDER_URL;
         if (getIntent().hasExtra("pres_id")) {
@@ -387,6 +398,70 @@ public class Payment_detailActivity extends CommonAppCompatActivity implements V
         // Stop service when done
         stopService(new Intent(this, PayPalService.class));
         super.onDestroy();
+    }
+
+    private void wallet() {
+
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        String user_id = sessionManagement.getUserDetails().get(BaseURL.KEY_ID);
+        params.add(new NameValuePair("userID", user_id));
+
+        // CommonAsyTask class for load data from api and manage response and api
+        CommonAsyTask task = new CommonAsyTask(params,
+                BaseURL.WALLET_AMOUNT, new CommonAsyTask.VJsonResponce() {
+            @Override
+            public void VResponce(String response) {
+                Log.e("WALLET RESPONSE-->", response);
+                //System.out.println("REORDER ----->"+response);
+
+                try {
+                    List<WalletModel> my_order_detail_modelList = new ArrayList<>();
+
+                    // gson library use for getting api response from api and store as over model
+                    Gson gson = new Gson();
+                    Type listType = new TypeToken<List<WalletModel>>() {
+                    }.getType();
+                    //System.out.println("TYPE--->"+listType.getTypeName().toString()+response);
+                    // store gson values in list
+
+                    double d=0;
+                    if (response.equalsIgnoreCase("No Wallet Amount Found")) {
+                        tvWallet.setText("₹ 0.00");
+                        d=0;
+                    } else {
+                        my_order_detail_modelList = gson.fromJson(response, listType);
+                        tvWallet.setText("₹ " +my_order_detail_modelList.get(0).amount+".00");
+                        try {
+                            d = Double.parseDouble(my_order_detail_modelList.get(0).amount);
+                            double ans = 0;
+                            ans = Double.parseDouble(total_price) - ((d * 20) / 100);
+                            if (ans != 0){
+                                tv_total_price.setText("₹ " + String.format("%.2f", Double.parseDouble(ans + "")));
+                            walletDiscount = String.valueOf((d * 20) / 100);
+                        }
+                            else{
+                                tv_total_price.setText("₹ " +String.format("%.2f",Double.parseDouble(total_price)));
+                                walletDiscount= "0";
+                            }
+                        }catch (Exception ex){
+                            d=0;
+                            tv_total_price.setText("₹ " +String.format("%.2f",Double.parseDouble(total_price)));
+                            walletDiscount= "0";
+                        }
+                       }
+                }catch (Exception ex){
+                    tvWallet.setText(ex.toString());
+                }
+            }
+
+            @Override
+            public void VError(String responce) {
+                // Log.e(TAG, responce);
+                // display toast message
+                CommonAppCompatActivity.showToast(Payment_detailActivity.this, responce);
+            }
+        }, true, this);
+        task.execute();
     }
 
 }

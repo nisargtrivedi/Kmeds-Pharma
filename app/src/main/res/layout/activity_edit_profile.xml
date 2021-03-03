@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,6 +8,8 @@
     tools:context="codecanyon.jagatpharma.Edit_profileActivity">
 
     <ScrollView
+        android:layout_above="@id/nav_vieww"
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -18,7 +20,8 @@
             android:orientation="vertical"
             android:padding="@dimen/space_10">
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/iv_profile_img"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -35,20 +38,20 @@
                 android:layout_marginTop="@dimen/space_10">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginRight="@dimen/_3sdp"
                     android:id="@+id/ti_profile_firstname"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_60sdp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/black"
-                    android:textColorHint="@color/black"
-                    app:errorTextAppearance="@style/error_appearance_black"
-                    app:hintTextAppearance="@style/error_appearance_black">
+                    android:textColorHint="@color/black">
 
                     <EditText
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/xml_rect"
                         android:id="@+id/et_profile_firstname"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/black"
+                        android:layout_height="@dimen/_40sdp"
                         android:ems="10"
                         android:hint="@string/first_name"
                         android:inputType="textCapSentences"
@@ -58,25 +61,24 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginLeft="@dimen/_3sdp"
                     android:id="@+id/ti_profile_lastname"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_60sdp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/black"
-                    android:textColorHint="@color/black"
-                    app:errorTextAppearance="@style/error_appearance_black"
-                    app:hintTextAppearance="@style/error_appearance_black">
+                    android:textColorHint="@color/black">
 
                     <EditText
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/xml_rect"
                         android:id="@+id/et_profile_lastname"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/black"
+                        android:layout_height="@dimen/_40sdp"
                         android:ems="10"
                         android:hint="@string/last_name"
                         android:inputType="textCapSentences"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -88,28 +90,23 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ti_profile_gender"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/black"
-                    android:paddingBottom="@dimen/space_10"
-                    android:paddingEnd="@dimen/space_5"
-                    android:paddingLeft="@dimen/space_5"
-                    android:paddingRight="@dimen/space_5"
-                    android:paddingStart="@dimen/space_5"
                     android:textColorHint="@color/black"
                     app:errorTextAppearance="@style/error_appearance_black"
                     app:hintTextAppearance="@style/error_appearance_black">
 
                     <LinearLayout
+                        android:background="@drawable/xml_rect"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="bottom"
+                        android:layout_height="@dimen/_40sdp"
                         android:orientation="vertical">
 
                         <Spinner
                             android:id="@+id/sp_profile_gender"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_40sdp"
                             android:gravity="bottom" />
                     </LinearLayout>
 
@@ -133,10 +130,11 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/xml_bottom_border_black"
+                        android:background="@drawable/xml_rect"
                         android:gravity="bottom">
 
                         <TextView
+                            android:paddingLeft="@dimen/_5sdp"
                             android:id="@+id/tv_profile_dob"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -168,15 +166,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/black"
-                android:textColorHint="@color/black"
-                app:errorTextAppearance="@style/error_appearance_black"
-                app:hintTextAppearance="@style/error_appearance_black">
+                android:textColorHint="@color/black">
 
                 <EditText
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:background="@drawable/xml_rect"
                     android:id="@+id/et_profile_email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/black"
+                    android:layout_height="@dimen/_40sdp"
                     android:editable="false"
                     android:ems="10"
                     android:hint="@string/email_address"
@@ -190,15 +187,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/black"
-                android:textColorHint="@color/black"
-                app:errorTextAppearance="@style/error_appearance_black"
-                app:hintTextAppearance="@style/error_appearance_black">
+                android:textColorHint="@color/black">
 
                 <EditText
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:background="@drawable/xml_rect"
                     android:id="@+id/et_profile_mobile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/black"
+                    android:layout_height="@dimen/_40sdp"
                     android:ems="10"
                     android:hint="@string/mobile_number"
                     android:inputType="number"
@@ -212,20 +208,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/black"
-                android:textColorHint="@color/black"
-                app:errorTextAppearance="@style/error_appearance_black"
-                app:hintTextAppearance="@style/error_appearance_black">
+                android:textColorHint="@color/black">
 
                 <EditText
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:background="@drawable/xml_rect"
                     android:id="@+id/et_profile_address"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/black"
+                    android:layout_height="@dimen/_40sdp"
                     android:ems="10"
                     android:hint="@string/address"
                     android:inputType="textMultiLine"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -233,21 +227,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/black"
-                android:textColorHint="@color/black"
-                app:errorTextAppearance="@style/error_appearance_black"
-                app:hintTextAppearance="@style/error_appearance_black">
+                android:textColorHint="@color/black">
 
                 <EditText
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:background="@drawable/xml_rect"
                     android:id="@+id/et_profile_city"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/black"
+                    android:layout_height="@dimen/_40sdp"
                     android:ems="10"
                     android:hint="@string/city"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_referal_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black">
+
+                <EditText
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:background="@drawable/xml_rect"
+                    android:id="@+id/et_referealCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:hint="Referral Code"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <Button
                 android:id="@+id/btn_profile"
@@ -281,4 +294,12 @@
                 android:layout_height="wrap_content"></TextView>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_alignParentBottom="true"
+        android:id="@+id/nav_vieww"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>

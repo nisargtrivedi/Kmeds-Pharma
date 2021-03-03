@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,10 +15,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -134,6 +139,59 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        BottomNavigationView bottomNavigationView=findViewById(R.id.nav_vieww);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.btnWhatsapp:
+                        String contact = "+91 7041681684"; // use country code with your phone number
+                        String url = "https://api.whatsapp.com/send?phone=" + contact;
+                        try {
+                            PackageManager pm = getPackageManager();
+                            pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+                            Intent in = new Intent(Intent.ACTION_VIEW);
+                            in.setData(Uri.parse(url));
+                            startActivity(in);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            Toast.makeText(MainActivity.this, "Whatsapp app not installed in your phone", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                        break;
+
+                    case R.id.navigation_call:
+                        try {
+                            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                            callIntent.setData(Uri.parse("tel:" + "7041681684"));
+                            startActivity(callIntent);
+                        }catch (Exception ex){
+
+                        }
+                        break;
+                    case R.id.navigation_myorder:
+                        try {
+                            Intent commonIntent = new Intent(MainActivity.this, My_orderActivity.class);
+                            startActivity(commonIntent);
+                        }catch (Exception ex){
+
+                        }
+                        break;
+                    case R.id.navigationprofile:
+                        try {
+                            Intent commonIntent = new Intent(MainActivity.this, Edit_profileActivity.class);
+                            startActivity(commonIntent);
+                        }catch (Exception ex){
+
+                        }
+                        break;
+
+                }
+                return true;
+            }
+        });
+
+
         nav_menu = navigationView.getMenu();
 
         // getting side navigation header view for set values in side menu controlls
@@ -224,11 +282,17 @@ public class MainActivity extends AppCompatActivity
             String getimage = sessionManagement.getUserDetails().get(BaseURL.KEY_IMAGE);
             String getemail = sessionManagement.getUserDetails().get(BaseURL.KEY_EMAIL);
 
-            Picasso.with(this)
-                    .load(BaseURL.IMG_PROFILE_URL + getimage)
-                    .placeholder(R.drawable.ic_loading)
-                    .into(iv_header_img);
+            if (getimage != null && !getimage.isEmpty()) {
+                Picasso.with(this)
+                        .load(BaseURL.IMG_PROFILE_URL + getimage)
+                        .placeholder(R.drawable.ic_loading)
+                        .into(iv_header_img);
+            } else{
+                Picasso.with(this)
+                        .load(R.drawable.default_avtar)
+                        .into(iv_header_img);
 
+            }
             tv_header_name.setText(getname);
             tv_header_email.setText(getemail);
             nav_menu.findItem(R.id.menu_user).setVisible(true);

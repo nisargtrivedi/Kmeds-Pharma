@@ -248,6 +248,28 @@
                     android:theme="@style/edittext_white" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_referalcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:textColorHint="@color/black">
+
+                <EditText
+                    android:fontFamily="@font/lato_medium"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:id="@+id/edt_referralcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/xml_rect"
+                    android:hint="@string/referalcode"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_bg"
+                    android:theme="@style/edittext_white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <CheckBox
                 android:textSize="@dimen/_14ssp"
                 android:fontFamily="@font/lato_medium"

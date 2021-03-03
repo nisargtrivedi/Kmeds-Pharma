@@ -27,7 +27,7 @@
     <string name="lbl_take_camera_picture">Take photo</string>
     <string name="lbl_choose_from_gallery">From camera roll</string>
 
-    <string name="search_text">Search Medicines&#8230;</string>
+    <string name="search_text">Search</string>
     <string name="upload_your_prescription">Upload your prescription</string>
     <string name="looking_for">What you looking for?</string>
     <string name="suggested">Suggested</string>
@@ -197,5 +197,9 @@
     <string name="_3_your_friend_get_rs_200_in_their_wallet">3) Your friend get Rs.200 in their wallet.</string>
     <string name="amount">Amount</string>
     <string name="total_order_items">Total order items</string>
+    <string name="dosage_reminder">Dosage Reminder</string>
+    <string name="dosage_remider">Dosage Reminder</string>
+    <string name="my_referral_code"><i>MY REFERRAL CODE</i></string>
+    <string name="referalcode">Referral Code</string>
 
 </resources>

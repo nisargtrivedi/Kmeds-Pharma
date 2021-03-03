@@ -307,9 +307,6 @@ public class Confirm_detailActivity extends CommonAppCompatActivity implements V
                 CommonAppCompatActivity.showToast(Confirm_detailActivity.this, getResources().getString(R.string.please_select_delivery_address));
             } else if (!chk_agree.isChecked()) {
                 CommonAppCompatActivity.showToast(Confirm_detailActivity.this, getResources().getString(R.string.please_agree_with_terms));
-            } else if(chk_upload_prescription.isChecked()) {
-                //CommonAppCompatActivity.showToast(Confirm_detailActivity.this, getResources().getString(R.string.please_upload_prescription));
-                selectOption();
             }else
              {
                 if (offer_coupon == null) {

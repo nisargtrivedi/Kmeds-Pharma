@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import model.DosageModel;
 import model.My_order_detail_model;
 
 /**
@@ -20,7 +21,7 @@ import model.My_order_detail_model;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static String DB_NAME = "getPills";
-    private static int DB_VERSION = 1;
+    private static int DB_VERSION = 3;
     private SQLiteDatabase db;
 
     public static final String CART_TABLE = "cart";
@@ -49,6 +50,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public static final String COLUMN_COUNT = "bell_count";
     public static final String CO_ID = "bell_id";
+
+    //Table Dosage
+    public static final String DOSAGE_TABLE = "dosage_tbl";
+
+    public static final String MEDICINE = "medicine";
+    public static final String DOSAGE_ID = "dosage_id";
+    public static final String MEDICINE_TIME = "dosage_time";
+
+
 
 
 
@@ -83,9 +93,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         String notiExe= "CREATE TABLE IF NOT EXISTS " + NOTIFICATION_TABLE + "(" + CO_ID + " integer primary key AUTOINCREMENT NOT NULL, "+ COLUMN_COUNT + " integer NOT NULL )";
 
+        String dosageExe= "CREATE TABLE IF NOT EXISTS " + DOSAGE_TABLE + "(" + DOSAGE_ID + " integer primary key AUTOINCREMENT NOT NULL, "+ MEDICINE + " TEXT NOT NULL, "+MEDICINE_TIME+ " TEXT NOT NULL)";
+
         db.execSQL(exe);
         db.execSQL(notiExe);
-
+        db.execSQL(dosageExe);
     }
 
     public boolean setCart(HashMap<String, String> map, Float Qty, Double Total_amount, Double Total_discount_amount) {
@@ -121,6 +133,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.insert(CART_TABLE, null, values);
             return true;
         }
+    }
+
+    public boolean insertDosage(DosageModel model) {
+        db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(MEDICINE,model.MedicineName);
+        values.put(MEDICINE_TIME,model.Time);
+        db.insert(DOSAGE_TABLE, null, values);
+        return true;
     }
 
     public boolean setNotificationBell(int Qty) {
@@ -241,6 +263,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
+    public List<DosageModel> getAllDosage() {
+        List<DosageModel> list = new ArrayList<>();
+        db = getReadableDatabase();
+        String qry = "Select *  from " + DOSAGE_TABLE;
+        Cursor cursor = db.rawQuery(qry, null);
+        cursor.moveToFirst();
+
+        for (int i = 0; i < cursor.getCount(); i++) {
+            DosageModel map = new DosageModel();
+            map.MedicineName=cursor.getString(cursor.getColumnIndex(MEDICINE));
+            map.Time=cursor.getString(cursor.getColumnIndex(MEDICINE_TIME));
+            list.add(map);
+            cursor.moveToNext();
+        }
+        return list;
+    }
+
+
     public String getFavConcatString() {
         db = getReadableDatabase();
         String qry = "Select *  from " + CART_TABLE;
@@ -275,6 +315,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+        onCreate(db);
     }
 
 }

@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private static String TAG = RegisterActivity.class.getSimpleName();
 
     private TextInputLayout ti_firstname, ti_lastname, ti_email, ti_dob, ti_mobile, ti_password, ti_repassword;
-    private EditText et_firstname, et_lastname, et_email, et_mobile, et_password, et_repassword;
+    private EditText et_firstname, et_lastname, et_email, et_mobile, et_password, et_repassword,edt_referralcode;
     private TextView tv_dob;
     private ImageView iv_dob;
     private CheckBox chk_terms;
@@ -66,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         et_mobile = (EditText) findViewById(R.id.et_reg_mobile);
         et_password = (EditText) findViewById(R.id.et_reg_password);
         et_repassword = (EditText) findViewById(R.id.et_reg_conf_password);
+        edt_referralcode=findViewById(R.id.edt_referralcode);
         chk_terms = (CheckBox) findViewById(R.id.chk_reg_terms);
         btn_register = (Button) findViewById(R.id.btn_register);
 
@@ -189,7 +190,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 // check internet connection is available or not
                 if (ConnectivityReceiver.isConnected()) {
                     String fullname = firstname + " " + lastname;
-                    makeRegister(fullname, email, mobile, get_dob, password);
+                    makeRegister(fullname, email, mobile, get_dob, password,edt_referralcode.getText().toString());
                 } else {
                     // display snackbar
                     ConnectivityReceiver.showSnackbar(this);
@@ -259,7 +260,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         datePickerDialog.show();
     }
 
-    private void makeRegister(String user_fullname, String user_email, String user_phone, String user_bdate, String user_password) {
+    private void makeRegister(String user_fullname, String user_email, String user_phone, String user_bdate, String user_password,String referalCode) {
 
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new NameValuePair("user_fullname", user_fullname));
@@ -267,6 +268,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         params.add(new NameValuePair("user_email", user_email));
         params.add(new NameValuePair("user_phone", user_phone));
         params.add(new NameValuePair("user_password", user_password));
+        params.add(new NameValuePair("referal_code", referalCode));
+
 
         Log.e(TAG, user_fullname + "," + user_email + "," + user_phone + "," + user_bdate + "," + user_password);
 

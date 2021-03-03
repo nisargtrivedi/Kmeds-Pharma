@@ -124,5 +124,8 @@ public class BaseURL {
 
     public static final String KEY_CITY = "user_city";
 
+    public static final String KEY_REFERALCODE = "user_referal_code";
+
+
 
 }

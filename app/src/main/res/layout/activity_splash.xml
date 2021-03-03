@@ -12,22 +12,23 @@
         android:layout_centerInParent="true"
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         app:srcCompat="@drawable/logo" />
     <TextView
-        android:visibility="gone"
-        android:layout_marginTop="@dimen/space_10"
+        android:visibility="visible"
+        android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginLeft="@dimen/space_10"
         android:id="@+id/txt"
         android:fontFamily="@font/f"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:gravity="center"
         android:textAlignment="center"
         android:layout_below="@id/imageView6"
         android:textColor="@color/colorPrimary"
-        android:text="Make in India"
+        android:text="અમદાવાદ ની નવી ફાર્મસી"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></TextView>
+        android:layout_height="@dimen/_40sdp"></TextView>
 
     <ImageView
         android:visibility="gone"

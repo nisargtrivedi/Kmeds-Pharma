@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,7 +13,11 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -70,7 +75,7 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
     File imagefile1 = null;
 
     private TextInputLayout ti_firstname, ti_lastname, ti_email, ti_dob, ti_mobile, ti_address, ti_city;
-    private EditText et_firstname, et_lastname, et_email, et_mobile, et_address, et_city;
+    private EditText et_firstname, et_lastname, et_email, et_mobile, et_address, et_city,et_referealCode;
     private TextView tv_dob,tvCopy,tvReferralCode;
     private ImageView iv_dob, iv_profile;
     private Spinner sp_gender;
@@ -108,6 +113,7 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
         btn_update = (Button) findViewById(R.id.btn_profile);
         sp_gender = (Spinner) findViewById(R.id.sp_profile_gender);
         iv_profile = (ImageView) findViewById(R.id.iv_profile_img);
+        et_referealCode=findViewById(R.id.et_referealCode);
 
         ArrayList<String> gender = new ArrayList<>();
         gender.add(getResources().getString(R.string.male));
@@ -133,7 +139,12 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
         et_email.setText(email);
         et_mobile.setText(mobile);
         tv_dob.setText(dob);
-        tvReferralCode.setText(mobile);
+        et_referealCode.setText(sessionManagement.getUserDetails().get(BaseURL.KEY_REFERALCODE));
+        if(et_referealCode.getText().toString().length()==0){
+            et_referealCode.setEnabled(false);
+        }else{
+            et_referealCode.setEnabled(true);
+        }
 
         if (getaddress != null && !getaddress.isEmpty()) {
             sp_gender.setSelection(gender.indexOf(getgender));
@@ -146,6 +157,11 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
                     .load(BaseURL.IMG_PROFILE_URL + getimage)
                     .placeholder(R.mipmap.ic_launcher)
                     .into(iv_profile);
+        }else{
+            Picasso.with(this)
+                    .load(R.drawable.default_avtar)
+                    .into(iv_profile);
+
         }
 
         et_email.setKeyListener(null);
@@ -173,6 +189,67 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
                 ConnectivityReceiver.showSnackbar(Edit_profileActivity.this,"Code Copied!");
             }
         });
+
+
+        BottomNavigationView bottomNavigationView=findViewById(R.id.nav_vieww);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.btnWhatsapp:
+                        String contact = "+91 7041681684"; // use country code with your phone number
+                        String url = "https://api.whatsapp.com/send?phone=" + contact;
+                        try {
+                            PackageManager pm = getPackageManager();
+                            pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+                            Intent in = new Intent(Intent.ACTION_VIEW);
+                            in.setData(Uri.parse(url));
+                            startActivity(in);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            Toast.makeText(Edit_profileActivity.this, "Whatsapp app not installed in your phone", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                        break;
+
+                    case R.id.navigation_call:
+                        try {
+                            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                            callIntent.setData(Uri.parse("tel:" + "7041681684"));
+                            startActivity(callIntent);
+                        }catch (Exception ex){
+
+                        }
+                        break;
+                    case R.id.navigation_myorder:
+                        try {
+                            Intent commonIntent = new Intent(Edit_profileActivity.this, My_orderActivity.class);
+                            startActivity(commonIntent);
+                        }catch (Exception ex){
+
+                        }
+                        break;
+                    case R.id.navigationprofile:
+                        try {
+//                            Intent commonIntent = new Intent(Edit_profileActivity.this, Edit_profileActivity.class);
+//                            startActivity(commonIntent);
+                        }catch (Exception ex){
+
+                        }
+                        break;
+
+                    case R.id.navigation_home:
+                        try {
+                          finish();
+                        }catch (Exception ex){
+                        }
+                        break;
+
+                }
+                return true;
+            }
+        });
+
 
     }
 
@@ -350,6 +427,7 @@ public class Edit_profileActivity extends AppCompatActivity implements View.OnCl
         params.add(new NameValuePair("user_address", user_address));
         params.add(new NameValuePair("user_city", user_city));
         params.add(new NameValuePair("user_id", user_id));
+        params.add(new NameValuePair("referal_code", TextUtils.isEmpty(et_referealCode.getText().toString())?"":et_referealCode.getText().toString()));
 
         // CommonAsyTask class for load data from api and manage response and api
         CommonAsyTask task = new CommonAsyTask(params,

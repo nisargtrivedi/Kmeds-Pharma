@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+<TextView
+    android:fontFamily="@font/lato_bold"
+    android:background="@color/colorPrimary"
+    android:textColor="@color/white"
+    android:textSize="@dimen/_15ssp"
+    android:gravity="center"
+    android:text="Medicine Reminder"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_40sdp"></TextView>
+    <TextView
+        android:gravity="center"
+        android:text="Reminder Time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"></TextView>
+</LinearLayout>

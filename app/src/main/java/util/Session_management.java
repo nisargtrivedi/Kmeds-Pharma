@@ -18,6 +18,7 @@ import static Config.BaseURL.KEY_ID;
 import static Config.BaseURL.KEY_IMAGE;
 import static Config.BaseURL.KEY_MOBILE;
 import static Config.BaseURL.KEY_NAME;
+import static Config.BaseURL.KEY_REFERALCODE;
 import static Config.BaseURL.KEY_TYPE_ID;
 import static Config.BaseURL.PREFS_NAME;
 
@@ -62,6 +63,29 @@ public class Session_management {
         editor.commit();
     }
 
+    public void createLoginSession(String id, String email, String name
+            , String type_id, String bdate, String mobile, String image,
+                                   String gender, String address, String city,String code) {
+
+        if (!id.isEmpty()) {
+            editor.putBoolean(IS_LOGIN, true);
+        }
+
+        editor.putString(KEY_ID, id);
+        editor.putString(KEY_EMAIL, email);
+        editor.putString(KEY_NAME, name);
+        editor.putString(KEY_TYPE_ID, type_id);
+        editor.putString(KEY_BDATE, bdate);
+        editor.putString(KEY_MOBILE, mobile);
+        editor.putString(KEY_IMAGE, image);
+        editor.putString(KEY_GENDER, gender);
+        editor.putString(KEY_ADDRESS, address);
+        editor.putString(KEY_CITY, city);
+        editor.putString(KEY_REFERALCODE, code);
+
+        editor.commit();
+    }
+
     public void checkLogin() {
 
         if (!this.isLoggedIn()) {
@@ -101,6 +125,8 @@ public class Session_management {
         user.put(KEY_ADDRESS, prefs.getString(KEY_ADDRESS, null));
 
         user.put(KEY_CITY, prefs.getString(KEY_CITY, null));
+
+        user.put(KEY_REFERALCODE, prefs.getString(KEY_REFERALCODE, null));
 
         // return user
         return user;

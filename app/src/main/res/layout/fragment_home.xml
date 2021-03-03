@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/space_10"
                 android:layout_marginStart="@dimen/space_10"
-                android:text="@string/our_category" />
+                android:text="@string/dosage_reminder" />
 
 <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
 <!--                android:layout_width="match_parent"-->
@@ -151,28 +151,19 @@
                 android:padding="@dimen/space_10"
                 android:weightSum="5">
 
-                <ImageView
-                    android:id="@+id/llProduct"
-                    android:layout_weight="1"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    android:layout_marginEnd="@dimen/space_8"
-                    android:src="@drawable/menu_one"
-                    android:text="@string/prescription"
-                    />
+                <Button
+                    android:drawableLeft="@drawable/medicines"
+                    android:id="@+id/dosageReminder"
+                    android:textSize="@dimen/_14ssp"
+                    android:fontFamily="@font/lato_bold"
+                    android:textColor="@color/white"
+                    android:text="Medicine Dosage Reminder"
+                    android:background="@drawable/xml_rounded_corner_blue"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp">
 
-
-
-                <ImageView
-                    android:layout_weight="1"
-                    android:id="@+id/tv_home_prescription"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    android:src="@drawable/menu_two"
-                    android:text="@string/prescription"
-                    />
-
-            </LinearLayout>
+                </Button>
+                </LinearLayout>
             <TextView
                 android:textSize="@dimen/_13ssp"
                 android:fontFamily="@font/lato_medium"
@@ -188,12 +179,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/nav_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/windowBackground"
-                app:menu="@menu/bottom_nav_menu" />
 
 
             <!--            <TextView-->

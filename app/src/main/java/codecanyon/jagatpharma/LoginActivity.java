@@ -186,11 +186,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     String user_phone = jsonObject.getString("user_phone");
                     String user_bdate = jsonObject.getString("user_bdate");
                     String user_image = jsonObject.getString("user_image");
+                    String referalCode;
+                    if(jsonObject.getString("referal_code")!=null) {
+                        referalCode = jsonObject.getString("referal_code");
+                    }else{
+                        referalCode="";
+                    }
+
 
                     // intialize session menagement class
                     Session_management sessionManagement = new Session_management(LoginActivity.this);
                     // create and store data in session
-                    sessionManagement.createLoginSession(user_id, user_email, user_fullname, user_type_id, user_bdate, user_phone, user_image, "", "", "");
+                    sessionManagement.createLoginSession(user_id, user_email, user_fullname, user_type_id, user_bdate, user_phone, user_image, "", "", "",referalCode);
 
                     // after login success then user redirect to home screen of app
                     continueIntent();
@@ -212,6 +219,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void continueIntent() {
         if (!isFinish) {
             Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(mainIntent);
         }
         finish();

@@ -15,11 +15,12 @@
         android:layout_height="match_parent">
 
     <ImageView
+        android:scaleType="centerCrop"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_gravity="center"
         android:src="@drawable/refer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></ImageView>
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"></ImageView>
         <View
             android:layout_marginTop="@dimen/_5sdp"
             android:background="@color/colorPrimary"
@@ -28,21 +29,16 @@
         <TextView
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:textColor="@color/green"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_16ssp"
         android:gravity="center|left"
         android:text="@string/let_your_friends_fill_your_wallet"
         android:fontFamily="@font/lato_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></TextView>
-        <View
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"></View>
 
         <TextView
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimary"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_3sdp"
@@ -52,17 +48,12 @@
         android:fontFamily="@font/lato_regular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></TextView>
-        <View
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"></View>
 
     <TextView
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:textColor="@color/red"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_12ssp"
         android:gravity="center|left"
         android:text="@string/_1_share_kmeds_app_with_your_friends_and_family"
@@ -74,7 +65,7 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:textColor="@color/red"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_12ssp"
         android:gravity="center|left"
         android:text="@string/_2_you_get_rs_200_in_your_wallet_after_your_friend_s_first_successful"
@@ -86,35 +77,25 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:textColor="@color/red"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_12ssp"
         android:gravity="center|left"
         android:text="@string/_3_your_friend_get_rs_200_in_their_wallet"
         android:fontFamily="@font/lato_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></TextView>
-<View
-    android:layout_marginTop="@dimen/_5sdp"
-    android:background="@color/colorPrimary"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/_1sdp"></View>
 <TextView
-    android:textSize="@dimen/_18ssp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:textSize="@dimen/_15ssp"
     android:gravity="center"
-    android:text="MY REFERRAL CODE"
+    android:text="@string/my_referral_code"
     android:fontFamily="@font/lato_bold"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"></TextView>
-        <View
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"></View>
     <TextView
         android:id="@+id/referallCode"
         android:layout_marginTop="@dimen/_10sdp"
-        android:background="@drawable/ticket"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:gravity="center"
         android:textSize="@dimen/_13ssp"
         android:text="00"
